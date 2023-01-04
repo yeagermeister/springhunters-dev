@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- page header -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />		
+		<title>Springs and swimming holes of Florida</title>
+		<!-- google fonts Reference -->
+		 <link
+			href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
+			rel="stylesheet"
+		/> 
+	<!-- jass CSS Reference -->
+		<link rel="stylesheet" href="./Assets/css/jass.css" />
+		<!-- custom CSS Reference -->
+		<link rel="stylesheet" href="./Assets/css/style.css" />
+		<link rel="shortcut icon" href="#">
+	</head>
+
+	<body>
+		<header class="gradient-custom bg-primary w-100 flex-row">
+			<h1 class="col-8">Springs and Swimming Holes of Florida</h1>
+		</header>
+
+        <main>
+			<!-- on submission of a new spring, this page will display, containing information the user added -->
+            <h2>Your request to add a new spring is being reviewed by a site administrator.  New requests are usually aproved within 24 hours.</h2>
+			<h3>Spring Name</h3>
+			<p id="spring"></p>
+			<h3>Description</h3>
+			<p id="desc"></p>
+			<h3>Camping</h3>
+			<p id="camp"></p>
+			<h3>Pet Friendly</h3>
+			<p id="pet"></p>
+			<h3>Address</h3>
+			<p id="address"></p>
+			<!-- links back to index page -->
+			<a href="./index.html">Home</a>
+        </main>
+		<!-- the module containing custom javascript for modal information submission -->
+        <script type="module" src="./Assets/js/newspring.js"></script>
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- page header -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Springs and Swimming Holes of Florida</title>
+		<!-- a script library necessary for google maps -->
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+		<!-- jass CSS Reference -->
+		<link rel="stylesheet" href="./Assets/css/jass.css" />
+		<!-- custom CSS Reference -->
+		<link rel="stylesheet" href="./Assets/css/style.css" />
+		<link rel="shortcut icon" href="#">
+	</head>
+
+	<body>
+		<header class="gradient-custom bg-primary w-100 flex-row" >
+			<h1 class="col-8">Springs and Swimming Holes of Florida</h1>
+			<div class="col-1">
+				<!-- links back to index page -->
+				<a href="./index.html">
+					<button type= "button" class="btn btn-info mt-3">
+						Home
+					</button>
+				</a>
+			</div>
+			<div class="col-3">
+				<form action="submit">
+					<!-- displays dropdown menu to choose parks from -->
+					<select class="round mt-3" id="dropdown">		
+					  </select>
+				</form>
+			</div>
+		</header>
+
+		<main class="flex-row">
+
+			<aside id="description-constainer" class="col-3 p-5 align-left bg-info springs-container min-100-vh">
+				<!-- placeholder park, overwritten by user selection -->
+				<h3 id="parkname">Manatee Springs State Park</h3>
+				<!-- displays the information of each park dynamically based on selected park -->
+				<ul class="springs-list">
+					<li><img src="" id="picture" alt="picture of the spring" class="card-image"></li>
+					<li id="description">Park Description</li>
+					<li id="distance">Distance to spring</li>
+					<li id="admission">Admission Fees</li>
+					<li id="pets">Pets</li>
+					<li id="statepark">State Park?</li>
+					<li id="camping">Camping?</li>
+					<li id="gator">Gator Danger</li>
+					<li id="scuba">Scuba Diving Allowed</li>
+					<li id="rating">My rating</li>
+					<li>
+						<!-- creates a personal star rating -->
+						<div class="rating">
+							<span><input class="five-pointed-star" name="rating" id="str5" value="5">5<label for="str5"></label></span>
+							<span><input class="five-pointed-star" type="radio" name="rating" id="str4" value="4">4<label for="str4"></label></span>
+							<span><input class="five-pointed-star" type="radio" name="rating" id="str3" value="3">3<label for="str3"></label></span>
+							<span><input class="five-pointed-star" type="radio" name="rating" id="str2" value="2">2<label for="str2"></label></span>
+							<span><input class="five-pointed-star" type="radio" name="rating" id="str1" value="1">1<label for="str1"></label></span>
+						</div>
+					</li>
+				</ul>
+			</aside>
+			<!-- creates the weather icons and info for the chosen park -->
+			<section class="flex-column col-8 p-5 align-left springs-container">
+				<article id="weather" class="springs-container bg-custom">
+					<h3 id="city" class="text-center"></h3>
+					<p class="text-center"><img id="icon" src="" alt="Weather icon"></p>
+					<p class="text-center">
+						<span class="text-center" id="temperature"></span>
+						<span id="condition"></span>
+					</p>
+				</article>
+				<!-- creates the element the map is displayed on -->
+				<article id="map" class=" springs-container bg-danger"></article>
+			</section>
+  </div>
+		</main>
+<!-- Jquery script library -->
+		<script src="./Assets/js/jquery.js"></script>
+		<!--google maps api containing the geometry and places library  -->
+		<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUPFIpucG-X584hME5DFs-4Yu28ny2vVk&v=weekly&libraries=geometry,places"></script>
+		<!-- the custom javascript module for page functionality -->
+		<script type="module" src="./Assets/js/springs.js"></script>
+		
+
+	</body>
+</html>
