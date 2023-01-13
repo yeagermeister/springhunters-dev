@@ -1,3 +1,4 @@
+//dom selectors
 const dropdownEl = document.querySelector("#dropdown");
 let parknameEl = document.querySelector("#parkname");
 let descriptionEl = document.querySelector("#description");
@@ -11,19 +12,16 @@ let scubaEl = document.querySelector("#scuba");
 let ratingEl = document.querySelector("#rating");
 let noteEl = document.querySelector("#notetext");
 let pictureEl = document.querySelector("#picture")
-//dom selectors
 
-//starts off the dropdown selector on Wekiwa springs, as it is the first item
+
+//sset a default spring for the page, in case someone navigated here from somewhere other than index.html
 let park = "Wekiwa Springs State Park";
-//declares values for the dropdown list
 let dropdownList = ["Wekiwa Springs State Park", "Silver Springs State Park", "Rainbow Springs State Park", "Rock Springs Run State Reserve", "Ginnie Springs", "Blue Spring State Park", "DeLeon Springs State Park", "Fanning Springs State Park", "Manatee Springs State Park", "Weeki Wachee Springs State Park", "Ichetucknee Springs State Park", "Madison Springs", "Royal Springs", "Bobs River Place"];
 
 // weather API variables
 let locationEl = document.querySelector('#parkname');
 let location = locationEl.innerHTML;
 storedParks = JSON.parse(sessionStorage.getItem(location));
-
-
 
 // Google Maps Variables
 var mapId = document.getElementById("map");
@@ -36,27 +34,25 @@ let distance = sessionStorage.getItem("distance");
 let marker;
 var miles;
 var zipcode;
-//function that initializes on page startup
+
 function init() {
 //populates the dropdown menu using shortname id's
   populateDropdown();
   
+  // grabs the spring the user selected on index.html
   var userSelect = JSON.parse(sessionStorage.getItem(`shortName`))
   
-  //utilizes every park in the storedparks array
+  // cycle though each spring until we match what the user selected.   This will definitely need changed once we have a database.
   for (let i = 0; i < storedParks.length; i++) {
     let shortName = storedParks[i].name.substring(0,4);
     if(userSelect === shortName){
     park = storedParks[i]
     zipcode = park.zipcode
-    //populates the information of selected park based on user choice
     populateParkInfo(park)
     }
-    //initializes the map feature
+ 
     initMap();
-    //initializes the weather feature
-    
-   
+
   }
   getWeather();
  };
@@ -84,10 +80,7 @@ function populateDropdown() {
 
 // Add an event listener to the dropdown menu that listens for the 'change' event
 dropdownEl.addEventListener("change", function() {
-  // Get the selected park's name from the dropdown menu
   const selectedPark = dropdownEl.value;
-
-  // Retrieve the user's rating for the selected park from localStorage
   const userRating = localStorage.getItem(selectedPark);
 
   // If the user has not rated this park, set the star display to 0
@@ -99,6 +92,7 @@ dropdownEl.addEventListener("change", function() {
     // Update the star display to show the user's rating
   }
 });
+
 //populates the card displaying information about the user selected park
 function populateParkInfo(park) {
   // Retrieve the user's rating for the selected park from local storage
@@ -177,12 +171,6 @@ $(document).ready(function(){
       localStorage.setItem(park.name + " rating", userRating);
   }); 
 });
-
-
-
-
-
-
 
 //utilizes the weather api from rapidapi to display weather
 function getWeather() {

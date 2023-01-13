@@ -10,8 +10,6 @@ const submitEl = document.querySelector('#searchBtn');
 
 const cardContainerEl = document.querySelector("#card-container");
 let cardEl;
-//ensuring rounded can be used globally to be put in sessionstorage on user selection
-let rounded = 0
 
 // Elements for the modal
 const modal = document.getElementById("myModal");
@@ -269,85 +267,75 @@ let madisonSprings = {
 let parks = [wekiwaSprings, silverSprings, rainbowSprings, rockSpringsRun, ginnieSprings, blueSpring, deLeonSprings, fanningSprings, manateeSprings, weekiWacheeSprings, itchetuckneeSprings, madisonSprings, royalSprings, bobsRiverPlace];
 let springList = ["Wekiwa Springs State Park", "Silver Springs State Park", "Rainbow Springs State Park", "Rock Springs Run State Reserve", "Ginnie Springs", "Blue Spring State Park", "DeLeon Springs State Park", "Fanning Springs State Park", "Manatee Springs State Park", "Weeki Wachee Springs State Park", "Ichetucknee Springs State Park", "Madison Springs", "Royal Springs", "Bobs River Place"];
 
-
-
-// function that initializes on page startup
 function init() {
-  //packing parks in sessionstorage to be used on user selection and generate cards
+  //For now are are using session storage to load all springs data into the users browser, this will not be needed once we have a database
   sessionStorage.setItem(`parks`, JSON.stringify(parks));
   for (let i = 0; i < parks.length; i++){
     sessionStorage.setItem(parks[i].name, JSON.stringify(parks[i]))
   }
-  // generate the spring cards on index.html 
   populateCards();
-  getweather();
  };
 
-// the function that creates the park cards on the main index page
+ 
+// ******************************************
+// ******* Generate a Springcard*************
+// ******************************************
 function populateCards() {
-  //retrieving the user's position based on wherever the device is accessing the page from
   navigator.geolocation.getCurrentPosition(function(position) {
     let userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    //retrieving the coordinates from each park to map it on google maps
     let parksAsLatLng = parks.map(function(park) {
       return new google.maps.LatLng(park.lat, park.lng);
     });
-    //iterating through each park to create the individual card
+
     for (let i = 0; i < parks.length; i++) {
       let storedParks = parks[i];
-     //giving each card/park a shortname id for easy retrieval on selection
+
       let cardEl = document.createElement('article');
       cardEl.classList = "springcard bg-light";
       let shortName = parks[i].name.substring(0,4);
       cardEl.setAttribute("id", shortName)
-      //creates card header
+
       let headingEl = document.createElement('h2');
       headingEl.classList = "text-primary"
       headingEl.textContent = storedParks.name
-      //displays a relevant image
+
       let imgEl = document.createElement('img');
       imgEl.classList = "card-image";
       imgEl.setAttribute("src", storedParks.imageUrl)
       imgEl.setAttribute("alt", "image of a spring")
-      //displays description in a paragraph tag
+
       let paraEl = document.createElement('p');
       paraEl.textContent = storedParks.description;
-      //a div to display the distance
-      let distanceEl = document.createElement('p');
-      distanceEl.setAttribute("id", "park" + [i])
-      //a span that the distance is nested within
+
+      let cardFooterEl = document.createElement('p');
+      cardFooterEl.setAttribute("id", "park" + [i])
+ 
       let distanceSpanEl = document.createElement('span');
       distanceSpanEl.classList = "distance-span";
       distanceSpanEl.setAttribute("id", "distance-" + i);
       //using google maps geography feature to map the distance between the users coordinates and the park displayed on the cards coordinates for display, and converting it to miles
       let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, parksAsLatLng[i]);
       let distanceInMiles = distanceInMeters / 1609.344;
-      rounded = Math.round(distanceInMiles)
-
-     //displays the distance
+      let rounded = Math.round(distanceInMiles)
       distanceSpanEl.textContent = rounded + ' miles away';
-      //creates a span element the icon indicating current weather at said park is nested within
-      let spanEl = document.createElement('span');
-      spanEl.classList = "wicon"
-      spanEl.setAttribute("id", "weather" + i)
-      //creates the img element to display the relevant icon
+
+      let weatherEl = document.createElement('span');
+      weatherEl.classList = "wicon"
+      weatherEl.setAttribute("id", "weather" + i)
       let imageEl = document.createElement('img');
-      //creates the icon itself
-      getweather(storedParks.zipcode , imageEl);
-      //append functions
+      
+
       cardContainerEl.appendChild(cardEl);
       cardEl.appendChild(headingEl);
       cardEl.appendChild(imgEl);
       cardEl.appendChild(paraEl);
-      cardEl.appendChild(distanceEl);
-      distanceEl.appendChild(distanceSpanEl);
-      distanceEl.appendChild(spanEl);
-      spanEl.appendChild(imageEl);
+      cardEl.appendChild(cardFooterEl);
+      cardFooterEl.appendChild(distanceSpanEl);
+      cardFooterEl.appendChild(weatherEl);
+      weatherEl.appendChild(imageEl);
     }
   });
 };
-
-
 
   // Send a GET request to the RapidAPI weather API
 function getweather(zipcode, imageEl) {    
@@ -364,22 +352,21 @@ function getweather(zipcode, imageEl) {
   fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${zipcode}`, options)
     .then(response => response.json())
     .then(data => {
-      // chooses which icon to display
       const iconUrl = data.current.condition.icon;
       imageEl.setAttribute("src", iconUrl);
     })
-    //displays error message
     .catch(err => console.error(err));
 };
-//creates a filter to narrow down parks based on user choice
-function filterResults(userSP, userPet, userCamp, userGator, userScuba, userFee, zipCode) {
-    //iterates through parks
+
+// ******************************************
+// ************Filter logic *****************
+// ******************************************
+function filterResults(userSP, userPet, userCamp, userGator, userScuba, userFee) {
     for (let i = 0; i < parks.length; i++) {
       let storedParks = parks[i];
       let shortName = "#" + parks[i].name.substring(0,4);
       let cardEl = document.querySelector(shortName);
       cardEl.classList = "springcard bg-light";
-
         if ((userSP === false) && (storedParks.statepark === true)) {
           cardEl.classList = "display-none";
         }
@@ -408,20 +395,17 @@ function filterResults(userSP, userPet, userCamp, userGator, userScuba, userFee,
 // *******card click listener ***************
 // ******************************************
 cardContainerEl.addEventListener("click", function(event) {
-  //by targeting both the element and the parent, we ensure that the card can be clicked anywhere
-  var element = event.target;
-  var parent = element.parentElement;
+  let element = event.target;
+  let parent = element.parentElement;
   
-  //uses the shortname and distance of each park to carry over user selection onto the second page
   if (element.matches("article")) {
-    var shortName = element.id;
+    let shortName = element.id;
     sessionStorage.setItem("shortName", JSON.stringify(shortName));   
     sessionStorage.setItem('distance', element.childNodes[3].childNodes[0].textContent);
-    //swaps the page
     location.assign("./springs.html");
   }
   if (parent.matches("article")) {
-    var shortName = parent.id;
+    let shortName = parent.id;
     sessionStorage.setItem("shortName", JSON.stringify(shortName));
     sessionStorage.setItem('distance', parent.childNodes[3].childNodes[0].textContent);
     location.assign("./springs.html");
@@ -431,7 +415,6 @@ cardContainerEl.addEventListener("click", function(event) {
 // ******************************************
 // *******Search listener *******************
 // ******************************************
-//trims the results down depending on the filters chosen
 submitEl.addEventListener("click", function(event) {
   event.preventDefault;
 
@@ -448,8 +431,6 @@ submitEl.addEventListener("click", function(event) {
 // ******************************************
 // *******Modal listeners *******************
 // ******************************************
-
-// Add event listeners to open and close modal
 btnNew.addEventListener("click", function() {
   modal.style.display = "block";
 });
@@ -457,7 +438,6 @@ close.addEventListener("click", function() {
   modal.style.display = "none";
 });
 
-// Close modal when user clicks outside of it
 window.addEventListener("click", function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -481,15 +461,11 @@ newSpring.addEventListener("click", function(event) {
   let address = addressM.value;
 
   let newspring = [spring, desc, camp, pet, address];
-//puts new spring in sessionstorage, displays a new page asking for patience and notifying a server admin
+//puts new spring in sessionstorage, displays a new page asking for patience and notifying a server admin.  This will be changed once we have a database.
   sessionStorage.setItem("newspring", JSON.stringify(newspring));
   document.location.assign("./newspring.html");
 });
 
-// ******************************************
-// ********** End of listeners **************
-// ******************************************
-//runs the init function
 init();
 
 
