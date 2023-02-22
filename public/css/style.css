@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* custom background gradient */
 .gradient-custom {
   background: linear-gradient(to right, rgba(141, 219, 238, 0.5), rgba(58, 202, 238, 0.5))
