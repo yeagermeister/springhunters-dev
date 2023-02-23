@@ -2,6 +2,18 @@ const router = require('express').Router();
 const { Spring } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+router.get('/', async(req,res) => {
+  try {
+    //get all springs
+    const springData = await Spring.findall({
+      order:[['name', 'ASC']]
+    })
+    const springs = springData.map((spring) => spring.get({ plain: true}));
+    res.render('homepage', { springs });
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
 router.post('/', withAuth, async (req, res) => {
   try {
     const newSpring = await Spring.create({
