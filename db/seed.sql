@@ -1,0 +1,2 @@
+INSERT INTO springs (name, description, image_url, zipcode, fees, pets, statepark, camping, scuba, lat, lng)
+VALUES ('Wekiwa Springs State Park', 'Wekiwa Springs State Park is a 7,000-acre Florida State Park in Apopka, Florida. With emerald springs feeding the Wekiwa River and lush tropical hammocks, this unique park just minutes from downtown Orlando is perfect for observing abundant wildlife or cooling off on a summer day', './Assets/images/Wekiwa-Springs-State-Park-FL.jpg', 32712, "$6/car", false, true, true, false, 28.711243, -81.463754)

@@ -29,11 +29,11 @@ CREATE TABLE springs (
   pets BOOLEAN,
   statepark BOOLEAN,
   camping BOOLEAN,
-  gatordanger BOOLEAN,
   scuba BOOLEAN,
   lat DECIMAL,
   lng DECIMAL
 );
+
 CREATE TABLE ratings (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
