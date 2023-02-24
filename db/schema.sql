@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS springhenters_db;
+DROP DATABASE IF EXISTS springhunters_db;
 CREATE DATABASE springhunters_db;
 USE springhunters_db;
 CREATE TABLE users (
@@ -30,8 +30,8 @@ CREATE TABLE springs (
   statepark BOOLEAN,
   camping BOOLEAN,
   scuba BOOLEAN,
-  lat DECIMAL,
-  lng DECIMAL
+  lat DECIMAL (7,4),
+  lng DECIMAL (7,4)
 );
 
 CREATE TABLE ratings (
