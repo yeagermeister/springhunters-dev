@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+router.get('/spring/:id', async (req, res) => {
   try {
     const springData = await Spring.findByPk(req.params.id, {
       include: [
