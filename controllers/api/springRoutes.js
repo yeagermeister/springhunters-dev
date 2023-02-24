@@ -5,15 +5,13 @@ const withAuth = require('../../utils/auth');
 router.get('/', async(req,res) => {
   try {
     //get all springs
-    const springData = await Spring.findall({
-      order:[['name', 'ASC']]
-    })
-    const springs = springData.map((spring) => spring.get({ plain: true}));
-    res.render('homepage', { springs });
+    const springData = await Spring.findall();
+    console.log("HI There");
+    res.status(200).json(springData);
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json("you made it here");
   }
-});
+}); 
 
 router.get('/:id', async(req,res) => {
   try {
