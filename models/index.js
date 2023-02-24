@@ -1,13 +1,13 @@
 const User = require('./User');
-const Project = require('./Spring');
+const Spring = require('./Spring');
 
-User.hasMany(Project, {
-  foreignKey: 'user_id',
-  onDelete: 'CASCADE'
-});
+// User.hasMany(Spring, {
+//   foreignKey: 'user_id',
+//   onDelete: 'CASCADE'
+// });
 
-Project.belongsTo(User, {
+Spring.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-module.exports = { User, Project };
+module.exports = { User, Spring };

@@ -17,23 +17,45 @@ Spring.init(
     },
     description: {
       type: DataTypes.STRING,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    needed_funding: {
-      type: DataTypes.FLOAT,
       allowNull: false,
     },
-    user_id: {
+    image_URL: {
+      type: DataTypes.STRING,
+    },
+    zipcode: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
+      allowNull: false,
     },
+    fees: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    pets: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    statepark: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    camping: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    scuba: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    lat: {
+      type: DataTypes.INTEGER,
+    },
+    lng: {
+      type: DataTypes.INTEGER,
+    }
   },
   {
     sequelize,

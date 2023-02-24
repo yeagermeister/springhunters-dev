@@ -15,12 +15,12 @@ router.get('/', async(req,res) => {
   }
 });
 
-router.get('/spring/:id', async(req,res) => {
+router.get('/:id', async(req,res) => {
   try {
     //get specific spring
     const springData = await Spring.findByPk(req.params.id);
     if(!springData) {
-      res.status(404).json({nessage: 'No Spring with this Id!'});
+      res.status(404).json({message: 'No Spring with this Id!'});
       return;
     }
       
