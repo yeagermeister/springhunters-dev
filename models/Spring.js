@@ -9,25 +9,25 @@ Spring.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING(100),
+      allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     image_URL: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     zipcode: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(5),
       allowNull: false,
     },
     fees: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     pets: {
@@ -51,18 +51,18 @@ Spring.init(
       defaultValue: false
     },
     lat: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(7, 4)
     },
     lng: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(7, 4)
     }
   },
   {
     sequelize,
     timestamps: false,
-    freezeTableName: true,
     underscored: true,
     modelName: 'spring',
+    tableName: 'springs'
   }
 );
 

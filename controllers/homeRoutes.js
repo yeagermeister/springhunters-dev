@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const springData = await Spring.findAll({
       include: [
         {
-          model: User,
+          model: spring,
           attributes: ['name'],
         },
       ],
