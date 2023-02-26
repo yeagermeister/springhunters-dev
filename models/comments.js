@@ -11,23 +11,23 @@ Comments.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id:{
-
+    user_id: {
+      type: DataTypes.INTEGER
     },
-    spring_id:{
-
+    spring_id: {
+      type: DataTypes.INTEGER
     },
-    rating:{
-      
+    rating: {
+      type: DataTypes.INTEGER
     }
-},
-{
-  sequelize,
-  timestamps: false,
-  freezeTableName: true,
-  underscored: true,
-  modelName: 'comment',
-}
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'comment',
+  }
 );
 
-module.exports = Comment;
+module.exports = Comments;

@@ -11,23 +11,23 @@ Ratings.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id:{
-
+    user_id: {
+      type: DataTypes.INTEGER
     },
-    spring_id:{
-
+    spring_id: {
+      type: DataTypes.INTEGER
     },
-    Comment:{
-      
+    comment: {
+      type: DataTypes.TEXT
     }
-},
-{
-  sequelize,
-  timestamps: false,
-  freezeTableName: true,
-  underscored: true,
-  modelName: 'ratings',
-}
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'rating',
+  }
 );
 
 module.exports = Ratings;
