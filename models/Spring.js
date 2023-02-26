@@ -60,7 +60,7 @@ Spring.init(
   {
     sequelize,
     timestamps: false,
-    // underscored: true,
+    underscored: true,
     modelName: 'spring',
     tableName: 'springs'
   }
