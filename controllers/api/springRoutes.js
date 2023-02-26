@@ -6,7 +6,7 @@ router.get('/', async(req,res) => {
   try {
     //get all springs
     const springData = await Spring.findall();
-    console.log("HI There");
+    console.log("Hi There");
     res.status(200).json(springData);
   } catch (err) {
     res.status(500).json("you made it here");
@@ -23,7 +23,8 @@ router.get('/:id', async(req,res) => {
     }
       
     const spring = springData.get({ plain: true});
-    res.render('spring', { spring });
+    console.log(spring);
+    res.status(200).json(spring);
   } catch (err) {
     res.status(500).json(err)
   }

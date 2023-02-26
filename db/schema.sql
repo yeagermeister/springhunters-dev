@@ -10,7 +10,7 @@ CREATE TABLE users (
 --   Can be used to set moderator, administrator permissions, etc.
   permissions varchar(30),
 --   Future development for paying customers
-  customer_level varchar(30)
+  customer_level varchar(30),
   zipcode INT(5)
 );
 -- passwords and usernames will get hashed to md5 when we write them to the database
@@ -23,7 +23,7 @@ CREATE TABLE springs (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   description TEXT,
-  image_URL TEXT,
+  image_url TEXT,
   zipcode INT(5),
   fees VARCHAR(20),
   pets BOOLEAN,
