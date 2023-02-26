@@ -6,16 +6,9 @@ router.get('/', async(req,res) => {
   try {
     //get specific spring
     const springData = await Spring.findAll();
-    if(!springData) {
-      res.status(404).json({message: 'No Spring with this Id!'});
-      return;
-    }
-      
-    const spring = springData.get({ plain: true});
-    console.log(spring);
-    res.status(200).json(spring);
+    res.status(200).json(springData);
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json("you got here")
   }
 });
 
