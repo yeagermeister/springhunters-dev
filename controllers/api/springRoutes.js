@@ -1,17 +1,23 @@
 const router = require('express').Router();
-const { Spring } = require('../../models');
+const { Spring, Ratings } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', async(req,res) => {
   try {
-    //get all springs
-    const springData = await Spring.findall();
-    console.log("Hi There");
-    res.status(200).json(springData);
+    //get specific spring
+    const springData = await Spring.findAll();
+    if(!springData) {
+      res.status(404).json({message: 'No Spring with this Id!'});
+      return;
+    }
+      
+    const spring = springData.get({ plain: true});
+    console.log(spring);
+    res.status(200).json(spring);
   } catch (err) {
-    res.status(500).json("you made it here");
+    res.status(500).json(err)
   }
-}); 
+});
 
 router.get('/:id', async(req,res) => {
   try {
