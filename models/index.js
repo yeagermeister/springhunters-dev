@@ -6,7 +6,7 @@ const Spring = require('./Spring');
 //   onDelete: 'CASCADE'
 // });
 
-// Spring.belongsTo(User, {
+// Spring.hasMany(User, {
 //   foreignKey: 'user_id'
 // });
 

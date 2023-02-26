@@ -19,7 +19,7 @@ Spring.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    image_URL: {
+    image_url: {
       type: DataTypes.TEXT,
     },
     zipcode: {
@@ -60,7 +60,7 @@ Spring.init(
   {
     sequelize,
     timestamps: false,
-    underscored: true,
+    // underscored: true,
     modelName: 'spring',
     tableName: 'springs'
   }
