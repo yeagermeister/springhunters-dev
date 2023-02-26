@@ -23,7 +23,7 @@ CREATE TABLE springs (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   description TEXT,
-  image_URL TEXT,
+  image_url TEXT,
   zipcode INT(5),
   fees VARCHAR(20),
   pets BOOLEAN,
