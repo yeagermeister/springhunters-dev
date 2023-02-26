@@ -1,6 +1,6 @@
 {
   "name": "springhunters",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -23,6 +23,6 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "tailwindcss": "^3.2.7"
+
   }
 }
