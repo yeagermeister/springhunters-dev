@@ -16,8 +16,35 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    pass_word: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8]
+      },
+    },
+    permissions: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    customer_level: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    zipcode: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     email: {
@@ -28,14 +55,7 @@ User.init(
         isEmail: true,
       },
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
-      },
     },
-  },
   {
     hooks: {
       beforeCreate: async (newUserData) => {

@@ -11,7 +11,8 @@ CREATE TABLE users (
   permissions varchar(30),
 --   Future development for paying customers
   customer_level varchar(30),
-  zipcode INT(5)
+  zipcode INT(5),
+  email VARCHAR(30) NOT NULL UNIQUE
 );
 -- passwords and usernames will get hashed to md5 when we write them to the database
 -- EXAMPLES
