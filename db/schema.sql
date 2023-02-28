@@ -40,6 +40,7 @@ CREATE TABLE ratings (
   user_id INT,
   spring_id INT,
   rating INT,
+  comment TEXT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
 );
@@ -48,6 +49,7 @@ CREATE TABLE comments (
   user_id INT,
   spring_id INT,
   comment TEXT,
+  rating INT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
 );
