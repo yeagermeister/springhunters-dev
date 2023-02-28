@@ -12,13 +12,29 @@ Ratings.init(
       autoIncrement: true,
     },
     user_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     spring_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'spring',
+        key: 'id'
+      }
     },
-    comment: {
-      type: DataTypes.TEXT
+    comment_id: {
+      type: DataTypes.TEXT,
+      references:{
+        model: 'comments',
+        key: 'id'
+      }
+    },
+    rating_value: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
     }
   },
   {

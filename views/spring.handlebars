@@ -2,7 +2,7 @@
   <h2>{{spring.name}}</h2>
   <p>{{{spring.description}}}</p>
   <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  <p>Created by {{user.name}}</p>
   <p>
     <span for="img" aria-label="money">💲</span>
     <span class="dollar-amount">{{format_amount needed_funding}}</span>
@@ -56,7 +56,7 @@
 			<h3 id="parkname">{{spring.name}}</h3>
 			<!-- displays the information of each park dynamically based on selected park -->
 			<ul class="springs-list">
-				<li><img src="{{spring.image_rl}}" alt="picture of the spring" class="card-image"></li>
+				<li><img src="{{spring.image_url}}" alt="picture of the spring" class="card-image"></li>
 				<li id="{{spring.description}}">Description</li>
 				<li id="distance">Distance to spring</li>
 				<li id="{{spring.fee}}">Admission Fees</li>
