@@ -1,13 +1,13 @@
 <!-- Loop over each object in the projects array -->
-{{#each springs as |spring| }}
+{{#each spring as |spring| }}
 <div class="row mb-4 spring">
   <div class="col-md-5">
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/spring/{{spring.id}}">{{spring.name}}</a>
+      {{!-- {{{get_emoji}}} --}}
+      <a href="/spring">{{spring.name}}</a>
     </h2>
-    <p>
+    {{!-- <p>
       <span for="img" aria-label="money">💲</span>
       <!-- Pass needed_funding value to the helper function -->
       <span class="dollar-amount">{{format_amount spring.needed_funding}}</span>
@@ -19,6 +19,6 @@
     <p>
       {{spring.description}}
     </p>
-  </div>
+  </div> --}}
 </div>
 {{/each}}
