@@ -16,33 +16,12 @@ router.get('/', async (req, res) => {
     res.render('homepage', { springs
       // logged_in: req.session.logged_in 
     });
-    console.log(springs);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/spring/:id', async (req, res) => {
-  try {
-    const springData = await Spring.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
 
-    const spring = springData.get({ plain: true });
-
-    res.render('spring', {
-      ...spring,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {

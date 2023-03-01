@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comments } = require('../../models');
 
 // CREATE a new comment
 router.post('/', async (req, res) => {
   try {
-    const newComment = await Comment.create({
+    const newComment = await Comments.create({
       user_id: req.session.user_id,
       spring_id: req.body.spring_id,
       rating_id: req.body.rating_id,
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 // GET all comments for a specific spring
 router.get('/spring/:id', async (req, res) => {
   try {
-    const commentsData = await Comment.findAll({
+    const commentsData = await Comments.findAll({
       where: { spring_id: req.params.id },
       include: { model: User }
     });
