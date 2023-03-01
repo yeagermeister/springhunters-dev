@@ -1,15 +1,20 @@
 const router = require('express').Router();
-const {Op} = require('sequelize');
 const { Spring, Ratings } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', async(req,res) => {
+router.get('/:id', async (req, res) => {
   try {
-    //get specific spring
-    const springData = await Spring.findAll();
-    res.status(200).json(springData);
+    const springData = await Spring.findByPk(req.params.id, {
+      
+    });
+
+    const springs = springData.get({ plain: true });
+
+    res.render('spring', {springs,
+      
+    }); console.log(springs)
   } catch (err) {
-    res.status(500).json("you got here")
+    res.status(500).json(err);
   }
 });
 

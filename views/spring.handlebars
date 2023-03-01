@@ -1,69 +1,20 @@
- <div class="text-center">
-  <h2>{{spring.name}}</h2>
-  <p>{{{spring.description}}}</p>
-  <p>{{description}}</p>
-  <p>Created by {{user.name}}</p>
-  <p>
-    <span for="img" aria-label="money">💲</span>
-    <span class="dollar-amount">{{format_amount needed_funding}}</span>
-    needed
-  </p>
-  <p>
-    <button class="btn btn-primary">Fund this Project!</button>
-  </p>
-</div> 
 
-
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!-- page header -->
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Springs and Swimming Holes of Florida</title>
-		<!-- a script library necessary for google maps -->
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-		<!-- jass CSS Reference -->
-		<link rel="stylesheet" href="../public/css/jass.css" />
-		<!-- custom CSS Reference -->
-		<link rel="stylesheet" href="../public/css/style.css" />
-		<link rel="shortcut icon" href="#">
-	</head>
-  <body>
-	<header class="gradient-custom bg-primary w-100 flex-row" >
-		<h1 class="col-8">Springs and Swimming Holes of Florida</h1>
-		<div class="col-1">
-			<!-- links back to index page -->
-			<a href="./index.html">
-				<button type= "button" class="btn btn-info mt-3">
-					Home
-				</button>
-			</a>
-		</div>
-		<div class="col-3">
-			<form action="submit">
-				<!-- displays dropdown menu to choose parks from -->
-				<select class="round mt-3" id="dropdown">		
-				  </select>
-			</form>
-		</div>
-	</header>
-
-	<main class="flex-row">
-
-		<aside id="description-constainer" class="col-3 p-5 align-left bg-info springs-container min-100-vh">
+  
+  <aside id="description-constainer" class="col-3 p-5 align-left bg-info springs-container min-100-vh">
 			<!-- placeholder park, overwritten by user selection -->
-			<h3 id="parkname">{{spring.name}}</h3>
+			<h3 id="parkname">{{springs.name}}</h3>
 			<!-- displays the information of each park dynamically based on selected park -->
 			<ul class="springs-list">
-				<li><img src="{{spring.image_url}}" alt="picture of the spring" class="card-image"></li>
-				<li id="{{spring.description}}">Description</li>
+				<li><img src="{{springs.image_url}}" alt="picture of the spring" class="card-image"></li>
+				<li id="">{{springs.description}}</li>
 				<li id="distance">Distance to spring</li>
-				<li id="{{spring.fee}}">Admission Fees</li>
-				<li id="{{spring.pets}}">Pets</li>
-				<li id="{{spring.stateparks}}">State Park?</li>
-				<li id="{{spring.camping}}">Camping?</li>
-				<li id="{{spring.scuba}}">Scuba Diving Allowed</li>
+				<li id="{{springs.fee}}">Admission Fees
+					{{springs.fee}}
+				</li>
+				<li id="{{springs.pets}}">Pets {{springs.pets}}</li>
+				<li id="{{springs.stateparks}}">State Park? {{springs.stateparks}}</li>
+				<li id="{{springs.camping}}">Camping? {{springs.camping}}</li>
+				<li id="{{springs.scuba}}">Scuba Diving Allowed {{springs.scuba}}</li>
 				<li id="rating">My rating</li>
 				<li>
 					<!-- creates a personal star rating -->
@@ -74,3 +25,6 @@
   <span><input class="five-pointed-star" type="radio" name="rating" id="str2" value="2">2<label for="str2"></label></span>
   <span><input class="five-pointed-star" type="radio" name="rating" id="str1" value="1">1<label for="str1"></label></span>
 </div>
+</div> 
+
+
