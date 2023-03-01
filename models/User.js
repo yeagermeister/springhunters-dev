@@ -18,11 +18,11 @@ User.init(
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     username: {
       type: DataTypes.STRING,
@@ -38,14 +38,16 @@ User.init(
     permissions: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'user'
     },
     customer_level: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 'silver'
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,

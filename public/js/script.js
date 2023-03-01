@@ -8,7 +8,7 @@ const pricingFeeEl = document.querySelector('#pricingFee');
 const zipCodeEl = document.querySelector('#zipCode');
 const submitEl = document.querySelector('#searchBtn');
 
-const cardContainerEl = document.querySelector("#card-container");
+const cardContainerEl = document.querySelector("#spring-card");
 let cardEl;
 
 // Elements for the modal
@@ -21,6 +21,11 @@ const descriptionM = document.querySelector("#descriptionm");
 const campingM = document.getElementById("campingm");
 const addressM = document.querySelector("#addressm");
 const petFriendlyM = document.getElementById("petfriendlym");
+
+
+// Define Springs
+// These variables have to be declared with let because the distance and weather icon will be updated
+
 
 
 let parks = [wekiwaSprings, silverSprings, rainbowSprings, rockSpringsRun, ginnieSprings, blueSpring, deLeonSprings, fanningSprings, manateeSprings, weekiWacheeSprings, itchetuckneeSprings, madisonSprings, royalSprings, bobsRiverPlace];
@@ -79,26 +84,7 @@ function getweather(zipcode, imageEl) {
 
 
 
-// ******************************************
-// *******card click listener ***************
-// ******************************************
-cardContainerEl.addEventListener("click", function(event) {
-  let element = event.target;
-  let parent = element.parentElement;
-  
-  if (element.matches("article")) {
-    let shortName = element.id;
-    sessionStorage.setItem("shortName", JSON.stringify(shortName));   
-    sessionStorage.setItem('distance', element.childNodes[3].childNodes[0].textContent);
-    location.assign("./springs.html");
-  }
-  if (parent.matches("article")) {
-    let shortName = parent.id;
-    sessionStorage.setItem("shortName", JSON.stringify(shortName));
-    sessionStorage.setItem('distance', parent.childNodes[3].childNodes[0].textContent);
-    location.assign("./springs.html");
-  }
-});
+
 
 // ******************************************
 // *******Search listener *******************
