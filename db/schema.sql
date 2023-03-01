@@ -7,9 +7,7 @@ CREATE TABLE users (
   last_name VARCHAR(30),
   username VARCHAR(255) NOT NULL UNIQUE KEY,
   pass_word VARCHAR(255) NOT NULL,
---   Can be used to set moderator, administrator permissions, etc.
   permissions varchar(30),
---   Future development for paying customers
   customer_level varchar(30),
   zipcode INT(5),
   email VARCHAR(30) NOT NULL UNIQUE
@@ -40,7 +38,7 @@ CREATE TABLE ratings (
   user_id INT,
   spring_id INT,
   rating INT,
-  comment TEXT,
+  comment_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
 );
@@ -49,7 +47,7 @@ CREATE TABLE comments (
   user_id INT,
   spring_id INT,
   comment TEXT,
-  rating INT,
+  rating_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
 );

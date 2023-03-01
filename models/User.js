@@ -55,6 +55,20 @@ User.init(
         isEmail: true,
       },
     },
+    // rating_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'rating',
+    //     key: 'id'
+    //   }
+    // },
+    // comment_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'comment',
+    //     key: 'id'
+    //   }
+    // },
     },
   {
     hooks: {
