@@ -22,8 +22,10 @@ const campingM = document.getElementById("campingm");
 const addressM = document.querySelector("#addressm");
 const petFriendlyM = document.getElementById("petfriendlym");
 
+
 // Define Springs
 // These variables have to be declared with let because the distance and weather icon will be updated
+
 
 
 let parks = [wekiwaSprings, silverSprings, rainbowSprings, rockSpringsRun, ginnieSprings, blueSpring, deLeonSprings, fanningSprings, manateeSprings, weekiWacheeSprings, itchetuckneeSprings, madisonSprings, royalSprings, bobsRiverPlace];
@@ -38,67 +40,27 @@ function init() {
   populateCards();
  };
 
- 
 // ******************************************
-// ******* Generate a Springcard*************
-// ******************************************
-function populateCards() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    let userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    let parksAsLatLng = parks.map(function(park) {
-      return new google.maps.LatLng(park.lat, park.lng);
-    });
+  // navigator.geolocation.getCurrentPosition(function(position) {
+  //   let userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  //   let parksAsLatLng = parks.map(function(park) {
+  //     return new google.maps.LatLng(park.lat, park.lng);
+  //   });
 
-    for (let i = 0; i < parks.length; i++) {
-      let storedParks = parks[i];
+  
+      // distanceSpanEl.classList = "distance-span";
+      // distanceSpanEl.setAttribute("id", "distance-" + i);
+      // //using google maps geography feature to map the distance between the users coordinates and the park displayed on the cards coordinates for display, and converting it to miles
+      // let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, parksAsLatLng[i]);
+      // let distanceInMiles = distanceInMeters / 1609.344;
+      // let rounded = Math.round(distanceInMiles)
+      // distanceSpanEl.textContent = rounded + ' miles away';
 
-      let cardEl = document.createElement('article');
-      cardEl.classList = "springcard bg-light";
-      let shortName = parks[i].name.substring(0,4);
-      cardEl.setAttribute("id", shortName)
-
-      let headingEl = document.createElement('h2');
-      headingEl.classList = "text-primary"
-      headingEl.textContent = storedParks.name
-
-      let imgEl = document.createElement('img');
-      imgEl.classList = "card-image";
-      imgEl.setAttribute("src", storedParks.imageUrl)
-      imgEl.setAttribute("alt", "image of a spring")
-
-      let paraEl = document.createElement('p');
-      paraEl.textContent = storedParks.description;
-
-      let cardFooterEl = document.createElement('p');
-      cardFooterEl.setAttribute("id", "park" + [i])
- 
-      let distanceSpanEl = document.createElement('span');
-      distanceSpanEl.classList = "distance-span";
-      distanceSpanEl.setAttribute("id", "distance-" + i);
-      //using google maps geography feature to map the distance between the users coordinates and the park displayed on the cards coordinates for display, and converting it to miles
-      let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, parksAsLatLng[i]);
-      let distanceInMiles = distanceInMeters / 1609.344;
-      let rounded = Math.round(distanceInMiles)
-      distanceSpanEl.textContent = rounded + ' miles away';
-
-      let weatherEl = document.createElement('span');
-      weatherEl.classList = "wicon"
-      weatherEl.setAttribute("id", "weather" + i)
-      let imageEl = document.createElement('img');
+      // let weatherEl = document.createElement('span');
+      // weatherEl.classList = "wicon"
+      // weatherEl.setAttribute("id", "weather" + i)
+      // let imageEl = document.createElement('img');
       
-
-      cardContainerEl.appendChild(cardEl);
-      cardEl.appendChild(headingEl);
-      cardEl.appendChild(imgEl);
-      cardEl.appendChild(paraEl);
-      cardEl.appendChild(cardFooterEl);
-      cardFooterEl.appendChild(distanceSpanEl);
-      cardFooterEl.appendChild(weatherEl);
-      weatherEl.appendChild(imageEl);
-    }
-  });
-};
-
   // Send a GET request to the RapidAPI weather API
 function getweather(zipcode, imageEl) {    
   const API_KEY = '4a9c9446f7msh1bdc5860de01184p135179jsne7c04d560051';
@@ -120,38 +82,7 @@ function getweather(zipcode, imageEl) {
     .catch(err => console.error(err));
 };
 
-// ******************************************
-// ************Filter logic *****************
-// ******************************************
-function filterResults(userSP, userPet, userCamp, userGator, userScuba, userFee) {
-    for (let i = 0; i < parks.length; i++) {
-      let storedParks = parks[i];
-      let shortName = "#" + parks[i].name.substring(0,4);
-      let cardEl = document.querySelector(shortName);
-      cardEl.classList = "springcard bg-light";
-        if ((userSP === false) && (storedParks.statepark === true)) {
-          cardEl.classList = "display-none";
-        }
-        if ((userSP === true) && (storedParks.statepark === false)) {
-          cardEl.classList = "display-none";
-        }
-        if (userPet === true && storedParks.pets === false) {
-          cardEl.classList = "display-none";
-        }
-        if ((userCamp === true && storedParks.camping === false)) {
-          cardEl.classList = "display-none";
-        }
-        if (userGator === true && storedParks.gatordanger === false) {
-          cardEl.classList = "display-none";
-        }
-        if (userScuba === true && storedParks.scuba === false) {
-          cardEl.classList = "display-none";
-        }
-        if ((userFee === true) && (storedParks.fees !== "free")) {
-          cardEl.classList = "display-none";
-        }
-    }
-};
+
 
 
 
@@ -164,11 +95,9 @@ submitEl.addEventListener("click", function(event) {
   let userSP = stateParkEl.checked;
   let userPet = petFriendlyEl.checked;
   let userCamp = campingAllowedEl.checked;
-  let userGator = gatorDangerEl.checked;
   let userScuba = scubaDivingEl.checked;
   let userFee = pricingFeeEl.checked;
-  let zipCode = zipCodeEl.value.trim();
-  filterResults(userSP, userPet, userCamp, userGator, userScuba, userFee, zipCode)
+  filterResults(userSP, userPet, userCamp, userScuba, userFee)
 });
 
 // ******************************************
