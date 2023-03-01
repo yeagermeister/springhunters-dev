@@ -1,1 +1,12 @@
-<p>test</p>
+<!-- Loop over each object in the projects array -->
+{{#each springs as |spring| }}
+    {{!-- <p>{{spring.distance}}</p> --}}
+<div class="card" style="width: 18rem;">
+  <img src="{{spring.image_url}}" class="card-img-top" alt="an image of a spring">
+  <div class="card-body">
+    <h5 class="card-title">{{spring.name}}</h5>
+    <p class="card-text">{{spring.description}}</p>
+    <a href="/spring" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+{{/each}}

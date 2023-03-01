@@ -10,13 +10,13 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const spring = springData.map((spring) => spring.get({ plain: true }));
+    const springs = springData.map((spring) => spring.get({ plain: true }));
 
     // // Pass serialized data and session flag into template
-    res.render('homepage', { spring
+    res.render('homepage', { springs
       // logged_in: req.session.logged_in 
     });
-    console.log(spring);
+    console.log(springs);
   } catch (err) {
     res.status(500).json(err);
   }
