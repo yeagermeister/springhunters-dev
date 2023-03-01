@@ -1,0 +1,68 @@
+const router = require('express').Router();
+const { Comment } = require('../../models');
+
+// CREATE a new comment
+router.post('/', async (req, res) => {
+  try {
+    const newComment = await Comment.create({
+      user_id: req.session.user_id,
+      spring_id: req.body.spring_id,
+      rating_id: req.body.rating_id,
+      comment: req.body.comment
+    });
+
+    res.status(200).json(newComment);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// GET all comments for a specific spring
+router.get('/spring/:id', async (req, res) => {
+  try {
+    const commentsData = await Comment.findAll({
+      where: { spring_id: req.params.id },
+      include: { model: User }
+    });
+
+    res.status(200).json(commentsData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+// create a middleware function to check if the user is an admin
+const checkAdmin = (req, res, next) => {
+    if (req.session.logged_in && req.session.user.permissions === 'admin') {
+      // user is an admin, continue with the request
+      next();
+    } else {
+      // user is not an admin, return an error
+      res.status(401).json({ message: 'You are not authorized to perform this action.' });
+    }
+  };
+  
+  // add the middleware function to the delete route
+  router.delete('/:id', checkAdmin, async (req, res) => {
+    try {
+      const commentData = await Comments.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+  
+      if (!commentData) {
+        res.status(404).json({ message: 'No comment found with this id!' });
+        return;
+      }
+  
+      res.status(200).json(commentData);
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
+
+module.exports = router;
