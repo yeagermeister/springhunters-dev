@@ -85,19 +85,6 @@ router.get('/:id', async(req,res) => {
 
 
 
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const newSpring = await Spring.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-
-    res.status(200).json(newSpring);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
 
 //i dont think we need the ability to delete on here as nothing should get through without verification
 // router.delete('/:id', withAuth, async (req, res) => {
