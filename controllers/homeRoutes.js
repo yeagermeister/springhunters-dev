@@ -21,6 +21,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/springs/:id', async (req, res) => {
+  try {
+    const springData = await Spring.findByPk(req.params.id, {
+      
+    });
+
+    const springs = springData.get({ plain: true });
+
+    res.render('spring', {springs,
+})}catch(err){
+  res.status(500).json(err);
+}})
+
 
 
 // Use withAuth middleware to prevent access to route
