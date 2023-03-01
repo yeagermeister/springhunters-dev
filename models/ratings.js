@@ -26,9 +26,9 @@ Ratings.init(
       }
     },
     comment_id: {
-      type: DataTypes.TEXT,
+      type: DataTypes.INTEGER,
       references:{
-        model: 'comments',
+        model: 'comment',
         key: 'id'
       }
     },

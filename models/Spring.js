@@ -55,21 +55,7 @@ Spring.init(
     },
     lng: {
       type: DataTypes.DECIMAL(7, 4)
-    },
-    // comment_id: {
-    //   type: DataTypes.STRING,
-    //   references: {
-    //     model: 'comments',
-    //     key: 'id'
-    //   }
-    // },
-    // rating_id: {
-    //   type: DataTypes.STRING,
-    //   references: {
-    //     model: 'rating',
-    //     key: 'id'
-    //   }
-    // }
+    }
   },
   {
     sequelize,
