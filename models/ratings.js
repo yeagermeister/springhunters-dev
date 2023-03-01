@@ -14,14 +14,14 @@ Ratings.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'users',
         key: 'id'
       }
     },
     spring_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'spring',
+        model: 'springs',
         key: 'id'
       }
     },
@@ -40,9 +40,10 @@ Ratings.init(
   {
     sequelize,
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: false,
     underscored: true,
     modelName: 'rating',
+    tableName:'ratings'
   }
 );
 

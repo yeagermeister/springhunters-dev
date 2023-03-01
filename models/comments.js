@@ -14,14 +14,14 @@ Comments.init(
     user_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'user',
+        model: 'users',
         key: 'id',
       }
     },
     spring_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'spring',
+        model: 'springs',
         key: 'id',
       }
     },
@@ -29,7 +29,7 @@ Comments.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'ratings',
-        key: 'rating_id'
+        key: 'id'
       }
       
     },
@@ -42,9 +42,10 @@ Comments.init(
   {
     sequelize,
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: false,
     underscored: true,
     modelName: 'comment',
+    tableName: 'comments'
   }
 );
 
