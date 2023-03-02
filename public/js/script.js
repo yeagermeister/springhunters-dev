@@ -1,26 +1,26 @@
 // Select DOM elements
-const stateParkEl = document.querySelector('#statePark');
-const petFriendlyEl = document.querySelector('#petFriendly');
-const campingAllowedEl = document.querySelector('#campingAllowed');
-const gatorDangerEl = document.querySelector('#gatorDanger');
-const scubaDivingEl = document.querySelector('#scubaDiving');
-const pricingFeeEl = document.querySelector('#pricingFee');
-const zipCodeEl = document.querySelector('#zipCode');
-const submitEl = document.querySelector('#searchBtn');
+// const stateParkEl = document.querySelector('#statePark');
+// const petFriendlyEl = document.querySelector('#petFriendly');
+// const campingAllowedEl = document.querySelector('#campingAllowed');
+// const gatorDangerEl = document.querySelector('#gatorDanger');
+// const scubaDivingEl = document.querySelector('#scubaDiving');
+// const pricingFeeEl = document.querySelector('#pricingFee');
+// const zipCodeEl = document.querySelector('#zipCode');
+// const submitEl = document.querySelector('#searchBtn');
 
-const cardContainerEl = document.querySelector("#spring-card");
-let cardEl;
+// const cardContainerEl = document.querySelector("#spring-card");
+// let cardEl;
 
-// Elements for the modal
-const modal = document.getElementById("myModal");
-const btnNew = document.getElementById("btnNew");
-const close = document.getElementsByClassName("close")[0];
-const newSpring = document.querySelector("#newSpring");
-const springNameM = document.querySelector("#springnamem");
-const descriptionM = document.querySelector("#descriptionm");
-const campingM = document.getElementById("campingm");
-const addressM = document.querySelector("#addressm");
-const petFriendlyM = document.getElementById("petfriendlym");
+// // Elements for the modal
+// const modal = document.getElementById("myModal");
+// const btnNew = document.getElementById("btnNew");
+// const close = document.getElementsByClassName("close")[0];
+// const newSpring = document.querySelector("#newSpring");
+// const springNameM = document.querySelector("#springnamem");
+// const descriptionM = document.querySelector("#descriptionm");
+// const campingM = document.getElementById("campingm");
+// const addressM = document.querySelector("#addressm");
+// const petFriendlyM = document.getElementById("petfriendlym");
 
 // Define Springs
 // These variables have to be declared with let because the distance and weather icon will be updated
@@ -39,11 +39,14 @@ const petFriendlyM = document.getElementById("petfriendlym");
 //  };
 
 // ******************************************
-  navigator.geolocation.getCurrentPosition(function(position) {
-    let userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    let parksAsLatLng = parks.map(function(park) {
-      return new google.maps.LatLng(park.lat, park.lng);
-    });
+// function finduserloc(){
+//   navigator.geolocation.getCurrentPosition(function(position) {
+//     let userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+//     console.log(userLoc);
+//   })};
+  //   let parksAsLatLng = parks.map(function(park) {
+  //     return new google.maps.LatLng(park.lat, park.lng);
+  //   });
 
   
       // distanceSpanEl.classList = "distance-span";
@@ -59,28 +62,28 @@ const petFriendlyM = document.getElementById("petfriendlym");
       // weatherEl.setAttribute("id", "weather" + i)
       // let imageEl = document.createElement('img');
       
-  // Send a GET request to the RapidAPI weather API
-function getweather(zipcode, imageEl) {    
-  const API_KEY = '4a9c9446f7msh1bdc5860de01184p135179jsne7c04d560051';
-  const API_HOST = 'weatherapi-com.p.rapidapi.com';
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': API_KEY,
-      'X-RapidAPI-Host': API_HOST
-    }
-  };
-    //utilizes the zipcode from the static map array
-  fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${zipcode}`, options)
-    .then(response => response.json())
-    .then(data => {
-      const iconUrl = data.current.condition.icon;
-      imageEl.setAttribute("src", iconUrl);
-    })
-    .catch(err => console.error(err));
-};
-
-
+// // //   Send a GET request to the RapidAPI weather API
+// // // function getweather(zipcode, imageEl) {    
+// // //   const API_KEY = '4a9c9446f7msh1bdc5860de01184p135179jsne7c04d560051';
+// // //   const API_HOST = 'weatherapi-com.p.rapidapi.com';
+// // //   const options = {
+// // //     method: 'GET',
+// // //     headers: {
+// // //       'X-RapidAPI-Key': API_KEY,
+// // //       'X-RapidAPI-Host': API_HOST
+// // //     }
+// // //   };
+// // //     //utilizes the zipcode from the static map array
+// // //   fetch(`https://weatherapi-com.p.rapidapi.com/forecast.json?q=${zipcode}`, options)
+// // //     .then(response => response.json())
+// // //     .then(data => {
+// // //       const iconUrl = data.current.condition.icon;
+// // //       imageEl.setAttribute("src", iconUrl);
+// // //     })
+// // //     .catch(err => console.error(err));
+// // // };
+// //  dd
+// d
 
 
 
@@ -137,3 +140,40 @@ function getweather(zipcode, imageEl) {
 // });
 
 // init();
+function getsprings() {
+	// replace `octocat` with anyone else's GitHub username
+	var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
+
+	fetch(requestSpringObjects)
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			console.log(data)
+		});
+}
+
+
+
+
+
+function getUserLoc(){
+  navigator.geolocation.getCurrentPosition(position => {
+    const userLat = position.coords.latitude;
+    const userLng = position.coords.longitude;
+    const userLoc = new google.maps.LatLng(userLat, userLng);
+    sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
+    console.log(userLoc)
+    var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
+  })
+}
+function insertDistanceToPark(){
+  const distanceSpanEl = document.getElementById("#distance");
+  let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
+        let distanceInMiles = distanceInMeters / 1609.344;
+        let rounded = Math.round(distanceInMiles)
+        distanceSpanEl.textContent = rounded + ' miles away';
+  }
+getUserLoc();
+getsprings();
