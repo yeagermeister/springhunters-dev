@@ -66,4 +66,10 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Route to input a new spring 
+router.get('/newspring', (req,res) => {
+  res.render('newspring')
+});
+
+
 module.exports = router;
