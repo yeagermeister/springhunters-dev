@@ -1,10 +1,9 @@
 
 <div class="row">
-	<div class="col">
-		<div class="container w-25"></div>
-			<h3 id="parkname">{{springs.name}}</h3>
+		<div class="container spring-card mt-5">
+			<h3 class="text-center" id="parkname">{{springs.name}}</h3>
+			<img src="../.{{springs.image_url}}" class="w-25 img-thumbnail float-end" alt="an image of a spring">
 			<ul class="springs-list">
-				<li><img src="../.{{springs.image_url}}" class="myimage img-thumbnail" alt="an image of a spring"></li>
 				<li id="">{{springs.description}}</li>
 				<li id="distance">Distance to spring</li>
 				<li id="{{springs.fee}}">Admission Fees
@@ -14,8 +13,7 @@
 				<li id="{{springs.stateparks}}">State Park? {{springs.stateparks}}</li>
 				<li id="{{springs.camping}}">Camping? {{springs.camping}}</li>
 				<li id="{{springs.scuba}}">Scuba Diving Allowed {{springs.scuba}}</li>
-				<li id="rating">My rating</li>
-				<li>
+				<li id="rating">My rating
 					<!-- creates a personal star rating -->
 				<div class="rating">
   					<span><input class="five-pointed-star" name="rating" id="str5" value="5">5<label for="str5"></label></span>
@@ -26,8 +24,7 @@
 				</div>
 			</ul>
 		</div>
-  	</div>
-  	<div class="col">
+	</div>
 		<div class="row">
 			<article id="weather" class="springs-container bg-custom">
 				<h3 id="city" class="text-center">Test Spring Name</h3>
