@@ -4,20 +4,25 @@ const withAuth = require('../../utils/auth');
 
 router.get('/:id', async (req, res) => {
   try {
-    const springData = await Spring.findByPk(req.params.id, {
-      
+    const springData = await Spring.findByPk(req.params.id); 
+      if(!springData){
+        res.status(404).json({ message: 'no spring with this id!'});
+        return;
+      }
+      res.status(200).json(springData);
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  });
+
+  router.get('/', async (req, res) => {
+    try {
+      const springData = await Spring.findAll(); 
+        res.status(200).json(springData);
+      } catch (err) {
+        res.status(500).json(err)
+      }
     });
-
-    const springs = springData.get({ plain: true });
-
-    res.render('spring', {springs,
-      
-    }); console.log(springs)
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 
 router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue', async (req, res) => {
   if (req.params.spvalue === "true"){
@@ -63,22 +68,22 @@ router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue', async (req,
   }
 });
 
-router.get('/:id', async(req,res) => {
-  try {
-    //get specific spring
-    const springData = await Spring.findByPk(req.params.id);
-    if(!springData) {
-      res.status(404).json({message: 'No Spring with this Id!'});
-      return;
-    }
+// router.get('/:id', async(req,res) => {
+//   try {
+//     //get specific spring
+//     const springData = await Spring.findByPk(req.params.id);
+//     if(!springData) {
+//       res.status(404).json({message: 'No Spring with this Id!'});
+//       return;
+//     }
       
-    const spring = springData.get({ plain: true});
-    console.log(spring);
-    res.status(200).json(spring);
-  } catch (err) {
-    res.status(500).json(err)
-  }
-});
+//     const spring = springData.get({ plain: true});
+//     console.log(spring);
+//     res.status(200).json(spring);
+//   } catch (err) {
+//     res.status(500).json(err)
+//   }
+// });
 
 
 // let spvalue;
