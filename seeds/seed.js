@@ -2,7 +2,7 @@ const sequelize = require('../config/connection');
 const { User, Spring } = require('../models');
 
 const userData = require('./userData.json');
-const springData = require('./projectData.json');
+const springData = require('./springData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -12,7 +12,13 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  for (const spring of springData) {
+
+
+console.log("breakpoint", users);
+ 
+
+
+for (const spring of springData) {
     await Spring.create({
       ...Spring,
       user_id: users[Math.floor(Math.random() * users.length)].id,
