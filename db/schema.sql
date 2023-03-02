@@ -1,6 +1,8 @@
 DROP DATABASE IF EXISTS springhunters_db;
 CREATE DATABASE springhunters_db;
 USE springhunters_db;
+
+
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
@@ -12,6 +14,8 @@ CREATE TABLE users (
   zipcode INT(5),
   email VARCHAR(30) NOT NULL UNIQUE
 );
+
+
 -- passwords and usernames will get hashed to md5 when we write them to the database
 -- EXAMPLES
 -- mysql> INSERT INTO UserNameAndPasswordDemo(UserId, UserPassword) VALUES ('John@gg.com', MD5('john123'));
