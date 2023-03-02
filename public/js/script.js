@@ -10,7 +10,7 @@
 
 // const cardContainerEl = document.querySelector("#spring-card");
 // let cardEl;
-
+var springarray;
 // // Elements for the modal
 // const modal = document.getElementById("myModal");
 // const btnNew = document.getElementById("btnNew");
@@ -139,9 +139,10 @@
 //   document.location.assign("./newspring.html");
 // });
 
+
 // init();
 function getsprings() {
-	// replace `octocat` with anyone else's GitHub username
+	
 	var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
 
 	fetch(requestSpringObjects)
@@ -149,31 +150,29 @@ function getsprings() {
 			return response.json();
 		})
 		.then(function (data) {
-			console.log(data)
+			return springarray = data;
+      console.log(data);
 		});
 }
 
 
-
-
-
-function getUserLoc(){
-  navigator.geolocation.getCurrentPosition(position => {
-    const userLat = position.coords.latitude;
-    const userLng = position.coords.longitude;
-    const userLoc = new google.maps.LatLng(userLat, userLng);
-    sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
-    console.log(userLoc)
-    var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
-    var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
-  })
-}
-function insertDistanceToPark(){
-  const distanceSpanEl = document.getElementById("#distance");
-  let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
-        let distanceInMiles = distanceInMeters / 1609.344;
-        let rounded = Math.round(distanceInMiles)
-        distanceSpanEl.textContent = rounded + ' miles away';
-  }
-getUserLoc();
-getsprings();
+// function getUserLoc(){
+//   navigator.geolocation.getCurrentPosition(position => {
+//     const userLat = position.coords.latitude;
+//     const userLng = position.coords.longitude;
+//     const userLoc = new google.maps.LatLng(userLat, userLng);
+//     sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
+//     console.log(userLoc)
+//     var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
+//     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
+//   })
+// }
+// function insertDistanceToPark(){
+//   const distanceSpanEl = document.getElementById("#distance");
+//   let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
+//         let distanceInMiles = distanceInMeters / 1609.344;
+//         let rounded = Math.round(distanceInMiles)
+//         distanceSpanEl.textContent = rounded + ' miles away';
+//   }
+// getUserLoc();
+getsprings().then(console.log(springarray));
