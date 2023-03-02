@@ -55,7 +55,7 @@
 			<div class="card-header">
 			  <ul class="nav nav-tabs card-header-tabs">
 				<li class="nav-item">
-				  <a class="nav-link active" href="#">{{User Administration}}</a>
+				  <a class="nav-link active" href="#">User Administration</a>
 				</li>
 			  </ul>
 			</div>
@@ -66,9 +66,9 @@
 				<div class="col w-25">
 					<form>
 						<div class="form-group">
-							<label for="exampleInputUsername">username</label>
+							<label for="exampleInputUsername">{{user.username}}</label>
 							<input type="text" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Enter username">
-							<button type="submit" class="btn btn-primary mt-2">Submit</button>
+							<button type="submit" class="btn btn-primary mt-2">{{user.Submit}}</button>
 						</div>
 					</form>
 					<form>
@@ -76,22 +76,22 @@
 							<input type="text" id="id" aria-describedby="id" placeholder="id">
 							<label for="id">id</label>
 							<input type="text" id="first_name" aria-describedby="first_name" placeholder="first_name">
-							<label for="first_name">{{first_name}}</label>
+							<label for="first_name">{{user.first_name}}</label>
 							<input type="text" id="last_name" aria-describedby="last_name" placeholder="last_name">
-							<label for="last_name">{{last_name}}</label>
+							<label for="last_name">{{user.last_name}}</label>
 							<input type="text" id="username" aria-describedby="username" placeholder="username">
-							<label for="username">{{username}}</label>
+							<label for="username">{{user.username}}</label>
 							<input type="text" id="pass_word" aria-describedby="pass_word" placeholder="pass_word">
-							<label for="pass_word">{{password}}</label>
+							<label for="pass_word">{{user.password}}</label>
 							<input type="text" id="permissions" aria-describedby="permissions" placeholder="permissions">
-							<label for="permissions">{{permissions}}</label>
+							<label for="permissions">{{user.permissions}}</label>
 							<input type="text" id="customer_level" aria-describedby="customer_level" placeholder="customer_level">
-							<label for="customer_level">{{customer_level}}</label>
+							<label for="customer_level">{{user.customer_level}}</label>
 							<input type="text" id="zipcode" aria-describedby="zipcode" placeholder="zipcode">
-							<label for="zipcode">{{zipcode}}</label>
+							<label for="zipcode">{{user.zipcode}}</label>
 							<input type="text" id="email" aria-describedby="email" placeholder="email">
-							<label for="email">{{email}}</label>
-							<button type="submit" class="btn btn-primary mt-2">{{Submit}}</button>
+							<label for="email">{{user.email}}</label>
+							<button type="submit" class="btn btn-primary mt-2">{{user.Submit}}</button>
 						</div>
 					</form>
 				</div>	
