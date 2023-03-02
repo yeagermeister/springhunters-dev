@@ -28,13 +28,14 @@
                 </li>
                 <li class="nav-item">
                   {{!-- <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login/Signup</a> --}}
-                  <a class="nav-link" href="/login">login!</a>
+                  <a class="nav-link" href="/login">Login/Signup</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-none" href="#">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  data-toggle="modal" data-target="#newSpringModal">Submit a new spring</a>
+                  <a class="nav-link" data-toggle="modal" data-target="#newSpringModal">Submit a new Spring.</a>
+                    {{!-- <a class="nav-link" data-toggle= >Submit a new spring</a> --}}
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,8 +130,11 @@
                     <input type="checkbox" id="campingm"/></p>
                     <p><label for="petfriendlym">Pets allowed?</label>
                     <input type="checkbox" id="petfriendlym"/></p>
-                    <p><label for="addressm">Address of the spring:</label></p>
-                    <p><input type="text" id="addressm"/></p>
+                    <p><label for="stateparkm">Is this spring a statepark?</label>
+                    <input type="checkbox" id="stateparkm"/></p>
+                    <p><label for="zipcodem">Please enter zipcode for the spring.</label></p>
+                    <p><input type="text" id="zipcodem"/></p>
+
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

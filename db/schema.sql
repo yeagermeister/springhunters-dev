@@ -6,7 +6,7 @@ CREATE TABLE users (
   first_name VARCHAR(30),
   last_name VARCHAR(30),
   username VARCHAR(255) NOT NULL UNIQUE KEY,
-  pass_word VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   permissions varchar(30),
   customer_level varchar(30),
   zipcode INT(5),
@@ -55,14 +55,8 @@ CREATE TABLE new_spring (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   description TEXT,
-  image_URL TEXT,
   zipcode INT(5),
-  fees VARCHAR(20),
   pets BOOLEAN,
   statepark BOOLEAN,
   camping BOOLEAN,
-  gatordanger BOOLEAN,
-  scuba BOOLEAN,
-  lat DECIMAL,
-  lng DECIMAL
 );

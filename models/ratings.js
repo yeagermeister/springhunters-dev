@@ -28,11 +28,11 @@ Ratings.init(
     comment_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'comment',
+        model: 'comments',
         key: 'id'
       }
     },
-    rating_value: {
+    rating: {
     type: DataTypes.INTEGER,
     allowNull: false,
     }

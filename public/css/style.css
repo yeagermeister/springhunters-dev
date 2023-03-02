@@ -15,3 +15,96 @@
     background-image: url("../images/background-img3.jpg");
     background-color:#c5dfec;
 }
+
+.myimage {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* ******************************************* */
+/* *********** Star Rating ******************* */
+/* ******************************************* */
+.rating {
+    /* float:left; */
+    width: 100%;
+  }
+  /* .rating span { float:right; position:relative; } */
+  .rating span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+  }
+  .rating span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+  }
+  
+  .rating span:hover ~ span label,
+  .rating span:hover label,
+  .rating span.checked label,
+  .rating span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+  }
+  
+  .float-left {
+    float: left;
+  }
+  
+  .float-right {
+    float: right;
+  }
+  
+  .bg-custom {
+    background-color: #6ea5c1;
+  }
+  
+  /* This is for the star rating to make the radio buttons stars */
+  .five-pointed-star {
+    --star-color:orange;
+    margin:1em auto;
+    font-size:10em;
+    position: relative;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid var(--star-color);
+    border-left: 1em solid transparent;
+    transform: rotate(35deg);
+   }
+   .five-pointed-star:before {
+    border-bottom: 0.8em solid var(--star-color);
+    border-left: 0.3em solid transparent;
+    border-right: 0.3em solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -0.45em;
+    left: -0.65em;
+    display: block;
+    content:"";
+    transform: rotate(-35deg);
+   }
+   .five-pointed-star:after {
+    position: absolute;
+    display: block;
+    top: 0.03em;
+    left: -1.05em;
+    width: 0;
+    height: 0;
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid var(--star-color);
+    border-left: 1em solid transparent;
+    transform: rotate(-70deg);
+    content:"";
+   }

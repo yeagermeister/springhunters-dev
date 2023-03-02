@@ -17,37 +17,31 @@ Spring.init(
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+
     },
     image_url: {
       type: DataTypes.TEXT,
     },
     zipcode: {
       type: DataTypes.INTEGER(5),
-      allowNull: false,
     },
     fees: {
       type: DataTypes.STRING(20),
-      allowNull: false,
     },
     pets: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
     },
     statepark: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
     },
     camping: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
     },
     scuba: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
     },
     lat: {

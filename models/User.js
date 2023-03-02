@@ -18,36 +18,34 @@ User.init(
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    pass_word: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8]
+        len: [8, 250]
       },
     },
     permissions: {
       type: DataTypes.STRING,
-      allowNull: false,
       defaultValue: 'user'
     },
     customer_level: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.STRING,
       defaultValue: 'silver'
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      validate: {
+        len: [5]
+      },
     },
     email: {
       type: DataTypes.STRING,
@@ -57,21 +55,7 @@ User.init(
         isEmail: true,
       },
     },
-    // rating_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'rating',
-    //     key: 'id'
-    //   }
-    // },
-    // comment_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'comment',
-    //     key: 'id'
-    //   }
-    // },
-    },
+  },
   {
     hooks: {
       beforeCreate: async (newUserData) => {
