@@ -6,7 +6,7 @@ CREATE TABLE users (
   first_name VARCHAR(30),
   last_name VARCHAR(30),
   username VARCHAR(255) NOT NULL UNIQUE KEY,
-  pass_word VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   permissions varchar(30),
   customer_level varchar(30),
   zipcode INT(5),
