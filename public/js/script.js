@@ -11,7 +11,7 @@ const dropdownEl = document.querySelector("#dropdown");
 
 // const cardContainerEl = document.querySelector("#spring-card");
 // let cardEl;
-var springarray;
+
 // // Elements for the modal
 // const modal = document.getElementById("myModal");
 // const btnNew = document.getElementById("btnNew");
@@ -45,24 +45,24 @@ var springarray;
 //     let userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 //     console.log(userLoc);
 //   })};
-  //   let parksAsLatLng = parks.map(function(park) {
-  //     return new google.maps.LatLng(park.lat, park.lng);
-  //   });
+//   let parksAsLatLng = parks.map(function(park) {
+//     return new google.maps.LatLng(park.lat, park.lng);
+//   });
 
-  
-      // distanceSpanEl.classList = "distance-span";
-      // distanceSpanEl.setAttribute("id", "distance-" + i);
-      // //using google maps geography feature to map the distance between the users coordinates and the park displayed on the cards coordinates for display, and converting it to miles
-      // let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, parksAsLatLng[i]);
-      // let distanceInMiles = distanceInMeters / 1609.344;
-      // let rounded = Math.round(distanceInMiles)
-      // distanceSpanEl.textContent = rounded + ' miles away';
 
-      // let weatherEl = document.createElement('span');
-      // weatherEl.classList = "wicon"
-      // weatherEl.setAttribute("id", "weather" + i)
-      // let imageEl = document.createElement('img');
-      
+// distanceSpanEl.classList = "distance-span";
+// distanceSpanEl.setAttribute("id", "distance-" + i);
+// //using google maps geography feature to map the distance between the users coordinates and the park displayed on the cards coordinates for display, and converting it to miles
+// let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, parksAsLatLng[i]);
+// let distanceInMiles = distanceInMeters / 1609.344;
+// let rounded = Math.round(distanceInMiles)
+// distanceSpanEl.textContent = rounded + ' miles away';
+
+// let weatherEl = document.createElement('span');
+// weatherEl.classList = "wicon"
+// weatherEl.setAttribute("id", "weather" + i)
+// let imageEl = document.createElement('img');
+
 // // //   Send a GET request to the RapidAPI weather API
 // // // function getweather(zipcode, imageEl) {    
 // // //   const API_KEY = '4a9c9446f7msh1bdc5860de01184p135179jsne7c04d560051';
@@ -121,7 +121,7 @@ var springarray;
 // listener for the "add a new spring" button
 // newSpring.addEventListener("click", function(event) {
 //   event.preventDefault;
- 
+
 //   let camp = "";
 //   let pet = "'";
 //   let spring = springNameM.value;
@@ -142,6 +142,14 @@ var springarray;
 
 
 // init();
+
+async function fetchsprings() {
+  
+  var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
+
+  const springlist = await (await fetch(requestSpringObjects)).json();
+  return springlist;
+
 
 
 
@@ -188,6 +196,7 @@ function getsprings() {
 
 		});
 
+
 }
 {/* <a class="dropdown-item" href="#">Populate</a> */}
 
@@ -209,46 +218,41 @@ function getsprings() {
 
 
 
-function getUserLoc(){
+function getUserLoc(lat,lng, distanceEl){
   navigator.geolocation.getCurrentPosition(position => {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;
-    const userLoc = new google.maps.LatLng(userLat, userLng);
-    sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
-    console.log(userLoc)
-    var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
-    var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
+    const userLatLng = new google.maps.LatLng(userLat, userLng);
+    var springLatLng = new google.maps.LatLng(lat, lng);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
+    let distanceInMiles = distance / 1609.344;
+    let rounded = Math.round(distanceInMiles);
+    distanceEl.innerHTML = rounded + ' miles away';
+    console.log(rounded)
+    
   })
 }
-function insertDistanceToPark(){
-  const distanceSpanEl = document.getElementById("#distance");
-  let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
-        let distanceInMiles = distanceInMeters / 1609.344;
-        let rounded = Math.round(distanceInMiles)
-        distanceSpanEl.textContent = rounded + ' miles away';
-  }
-getUserLoc();
-// getsprings();
-populateDropdown();
 
-// function getUserLoc(){
-//   navigator.geolocation.getCurrentPosition(position => {
-//     const userLat = position.coords.latitude;
-//     const userLng = position.coords.longitude;
-//     const userLoc = new google.maps.LatLng(userLat, userLng);
-//     sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
-//     console.log(userLoc)
-//     var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
-//     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
-//   })
-// }
 // function insertDistanceToPark(){
-//   const distanceSpanEl = document.getElementById("#distance");
-//   let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
+  
+//   let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, distance);
 //         let distanceInMiles = distanceInMeters / 1609.344;
 //         let rounded = Math.round(distanceInMiles)
-//         distanceSpanEl.textContent = rounded + ' miles away';
+//         distanceEl.textContent = rounded + ' miles away';
 //   }
-// getUserLoc();
-getsprings().then(console.log(springarray));
 
+getUserLoc();
+
+
+async function init(){
+  const springarray = await fetchsprings();
+  for (let i = 0; i < springarray.length; i++){
+    let j = i+1;
+    let distanceEl = document.querySelector(`#spring${j}`);
+    let lat = springarray[i].lat;
+    let lng = springarray[i].lng
+    getUserLoc(lat, lng, distanceEl);
+    
+  }
+}
+init();
