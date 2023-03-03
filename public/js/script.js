@@ -1,4 +1,5 @@
 // Select DOM elements
+const dropdownEl = document.querySelector("#dropdown");
 // const stateParkEl = document.querySelector('#statePark');
 // const petFriendlyEl = document.querySelector('#petFriendly');
 // const campingAllowedEl = document.querySelector('#campingAllowed');
@@ -141,20 +142,94 @@ var springarray;
 
 
 // init();
+
+
+
+function populateDropdown() {
+	// replace `octocat` with anyone else's GitHub username
+	const conn = "http://127.0.0.1:3001/api/springs/";
+
 function getsprings() {
 	
 	var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
 
-	fetch(requestSpringObjects)
+
+	fetch(conn)
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
+
+			console.log(data.length)
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].name, data[i].id)
+        const anchor = document.createElement('a');
+        anchor.href = `http://localhost:3001/springs/${data[i].id}`
+        anchor.innerText = `${data[i].name}`;
+        anchor.classList = "dropdown-item"
+        dropdownEl.appendChild(anchor);
+        // let options = dropdownEl.options;
+        // let optionExists = false;
+        // for (let j = 0; j < options.length; j++) {
+        //   if (options[j].text === optionEl.text) {
+        //     optionExists = true;
+        //     break;
+        //   }
+        // }
+        // If the option does not exist, add it to the dropdown menu
+      //   if (!optionExists) {
+      //     dropdownEl.appendChild(optionEl);
+      //   }
+      // }
+      }
+
 			return springarray = data;
       console.log(data);
-		});
-}
 
+		});
+
+}
+{/* <a class="dropdown-item" href="#">Populate</a> */}
+
+// function getsprings() {
+// 	// replace `octocat` with anyone else's GitHub username
+// 	var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
+
+// 	fetch(requestSpringObjects)
+// 		.then(function (response) {
+// 			return response.json();
+// 		})
+// 		.then(function (data) {
+// 			console.log(data)
+// 		});
+// }
+
+
+
+
+
+
+function getUserLoc(){
+  navigator.geolocation.getCurrentPosition(position => {
+    const userLat = position.coords.latitude;
+    const userLng = position.coords.longitude;
+    const userLoc = new google.maps.LatLng(userLat, userLng);
+    sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
+    console.log(userLoc)
+    var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
+  })
+}
+function insertDistanceToPark(){
+  const distanceSpanEl = document.getElementById("#distance");
+  let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
+        let distanceInMiles = distanceInMeters / 1609.344;
+        let rounded = Math.round(distanceInMiles)
+        distanceSpanEl.textContent = rounded + ' miles away';
+  }
+getUserLoc();
+// getsprings();
+populateDropdown();
 
 // function getUserLoc(){
 //   navigator.geolocation.getCurrentPosition(position => {
@@ -176,3 +251,4 @@ function getsprings() {
 //   }
 // getUserLoc();
 getsprings().then(console.log(springarray));
+
