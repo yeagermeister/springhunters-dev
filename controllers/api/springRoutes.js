@@ -24,38 +24,55 @@ router.get('/:id', async (req, res) => {
       }
     });
 
-router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue', async (req, res) => {
+router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', async (req, res) => {
+  console.log("made it here")
   if (req.params.spvalue === "true"){
     spvalue = true
-  }else {
-    spvalue = false
-  };
+  } else {spvalue = ""};
   if (req.params.petvalue === "true"){
     petvalue = true
-  }else {
-    petvalue = false
-  };
+  } else {petvalue = ""};
   if (req.params.campingvalue === "true"){
     campingvalue = true
-  }else {
-    campingvalue = false
-  };
+  } else {campingvalue = ""};
   if (req.params.scubavalue === "true"){
     scubavalue = true
-  }else {
-    scubavalue = false
-  };
-
+  } else {scubavalue = ""};
+  if (req.params.userfee === "free"){
+    feevalue = "free"
+  } else {feevalue = ""};
+console.log(spvalue, petvalue, campingvalue, scubavalue, feevalue);
   try {
+    let filter = ""
+    if (spvalue){
+      sp = `statepark: ${spvalue}, `;
+      filter = sp;
+    };
+    if (petvalue){
+      pet = `pets: ${petvalue}, `;
+      filter = filter + pet;
+    };
+    if (campingvalue){
+      camp = `camping: ${campingvalue}, `
+      filter = filter + camp;
+    };
+    if (scubavalue){
+      scuba = `scuba: ${scubavalue}, `;
+      filter = filter + scuba;
+    };
+    if (feevalue){
+      fees = `fees: ${feevalue}, `;
+      filter = filter + fees;
+    };
+    console.log(filter);
     const springData = await Spring.findAll({
       
       where:{
-        
-          statepark: spvalue,
+        statepark: spvalue,
         pets: petvalue,
         camping: campingvalue,
-        scuba: scubavalue
-
+        scuba: scubavalue,
+        userfee: userfee
       },
     });
     if (!springData) {
