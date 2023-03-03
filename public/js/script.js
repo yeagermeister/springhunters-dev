@@ -1,7 +1,7 @@
 // Select DOM elements
 const dropdownEl = document.querySelector("#dropdown");
 // let server = "http://localhost:3001/";
-let server = "https://springhunters1.herokuapp.com/";
+let server = "https://springhunters1.herokuapp.com";
 // const stateParkEl = document.querySelector('#statePark');
 // const petFriendlyEl = document.querySelector('#petFriendly');
 // const campingAllowedEl = document.querySelector('#campingAllowed');
