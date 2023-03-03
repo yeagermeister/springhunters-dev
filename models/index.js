@@ -2,6 +2,7 @@ const User = require('./User');
 const Spring = require('./Spring');
 const Comments = require('./comments');
 const Ratings = require('./ratings');
+const NewSpring = require('./NewSpring')
 
 User.hasMany(Comments, {
   foreignKey: 'user_id',
@@ -44,4 +45,4 @@ foreignKey: 'rating_value',
 onDelete: 'CASCADE'
 });
 
-module.exports = { User, Spring, Comments, Ratings };
+module.exports = { User, Spring, Comments, Ratings, NewSpring };

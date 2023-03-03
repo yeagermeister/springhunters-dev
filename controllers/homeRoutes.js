@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all springs and JOIN with user data
+    // Get all springs
     const springData = await Spring.findAll({
 
     });
@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
     const springs = springData.map((spring) => {
       const plainspring = spring.get({ plain: true })
       plainspring.distance = 20;
-      console.log(plainspring);
       return plainspring;
     });
 
@@ -70,9 +69,7 @@ router.get('/admin', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] }
     });
-    console.log(userData);
     const user = userData.get({ plain: true });
-    console.log(user);
     if (user.permissions === "admin") {
       res.render('admin');
     } else {res.render('homepage')};
@@ -100,51 +97,35 @@ router.get('/newspring', (req, res) => {
 router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', async (req, res) => {
   if (req.params.spvalue === "true"){
     spvalue = true
-  }else {
-    spvalue = false
-  };
+  }else {spvalue = ""  };
   if (req.params.petvalue === "true"){
     petvalue = true
-  }else {
-    petvalue = false
-  };
+  }else {petvalue = ""  };
   if (req.params.campingvalue === "true"){
     campingvalue = true
-  }else {
-    campingvalue = false
-  };
+  }else {campingvalue = ""};
   if (req.params.scubavalue === "true"){
     scubavalue = true
-  }else {
-    scubavalue = false
-  };
-  if (req.params.userfee === "free"){
+  }else {scubavalue = ""};
+  if (req.params.userfee === "true"){
     userfee = "free"}
-    else{ userfee = "*"}
- 
-
+    else{ userfee = ""}
   try {
     const springData = await Spring.findAll({
-      
       where:{
-        
-          statepark: spvalue,
+        statepark: spvalue,
         pets: petvalue,
         camping: campingvalue,
         scuba: scubavalue,
-        userfee: userfee
-
+        fees: userfee
       },
     });
+    console.log(springData);
+    const springs = springData.get({ plain: true });
+    console.log(springs);
     res.render('homepage', {
       springs
-      
     });
-    if (!springData) {
-      res.status(404).json({ message: 'your search did not match any filters!' });
-      return;
-    }
-    res.status(200).json(springData);
   } catch (err) {
     res.status(500).json(err);
   }
