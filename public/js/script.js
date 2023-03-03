@@ -1,5 +1,7 @@
 // Select DOM elements
 const dropdownEl = document.querySelector("#dropdown");
+// let server = "http://localhost:3001/";
+let server = "https://springhunters1.herokuapp.com";
 const stateParkEl = document.querySelector('#statePark');
 const petFriendlyEl = document.querySelector('#petFriendly');
 const campingAllowedEl = document.querySelector('#campingAllowed');
@@ -168,7 +170,7 @@ function filterResults(userSP, userPet, userCamp, userScuba, userFee){
 
 async function fetchsprings() {
 
-  var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
+  var requestSpringObjects = `${server}/api/springs/`;
 
   const springlist = await (await fetch(requestSpringObjects)).json();
   return springlist;
@@ -178,7 +180,7 @@ async function fetchsprings() {
 
 function getsprings() {
 
-  let conn = "http://127.0.0.1:3001/api/springs/";
+  let conn = `${server}/api/springs/`;
   fetch(conn)
     .then(function (response) {
       return response.json();
@@ -188,7 +190,7 @@ function getsprings() {
       console.log(data.length)
       for (let i = 0; i < data.length; i++) {
         const anchor = document.createElement('a');
-        anchor.href = `http://localhost:3001/springs/${data[i].id}`
+        anchor.href = `${server}/springs/${data[i].id}`
         anchor.innerText = `${data[i].name}`;
         anchor.classList = "dropdown-item"
         dropdownEl.appendChild(anchor);
