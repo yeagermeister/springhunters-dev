@@ -2,14 +2,12 @@
 const dropdownEl = document.querySelector("#dropdown");
 // let server = "http://localhost:3001/";
 let server = "https://springhunters1.herokuapp.com";
-// const stateParkEl = document.querySelector('#statePark');
-// const petFriendlyEl = document.querySelector('#petFriendly');
-// const campingAllowedEl = document.querySelector('#campingAllowed');
-// const gatorDangerEl = document.querySelector('#gatorDanger');
-// const scubaDivingEl = document.querySelector('#scubaDiving');
-// const pricingFeeEl = document.querySelector('#pricingFee');
-// const zipCodeEl = document.querySelector('#zipCode');
-// const submitEl = document.querySelector('#searchBtn');
+const stateParkEl = document.querySelector('#statePark');
+const petFriendlyEl = document.querySelector('#petFriendly');
+const campingAllowedEl = document.querySelector('#campingAllowed');
+const scubaDivingEl = document.querySelector('#scubaDiving');
+const pricingFeeEl = document.querySelector('#pricingFee');
+const submitEl = document.querySelector('#searchBtn');
 
 // const cardContainerEl = document.querySelector("#spring-card");
 // let cardEl;
@@ -93,16 +91,41 @@ let server = "https://springhunters1.herokuapp.com";
 // ******************************************
 // *******Search listener *******************
 // ******************************************
-// submitEl.addEventListener("click", function(event) {
-//   event.preventDefault;
 
-//   let userSP = stateParkEl.checked;
-//   let userPet = petFriendlyEl.checked;
-//   let userCamp = campingAllowedEl.checked;
-//   let userScuba = scubaDivingEl.checked;
-//   let userFee = pricingFeeEl.checked;
-//   filterResults(userSP, userPet, userCamp, userScuba, userFee)
-// });
+
+submitEl.addEventListener("click", async function(event) {
+  event.preventDefault();
+
+  let userSP = stateParkEl.checked;
+  let userPet = petFriendlyEl.checked;
+  let userCamp = campingAllowedEl.checked;
+  let userScuba = scubaDivingEl.checked;
+  let userFee = pricingFeeEl.checked;
+
+  try {
+    const response = await fetch(`/filtered/${userSP}/${userPet}/${userCamp}/${userScuba}/${userFee}`);
+
+    const data = await response.json();
+    let results = document.getElementById("results");
+
+    if (data.length > 0) {
+      let resultHTML = "";
+      data.forEach(spring => {
+        resultHTML += `<div>${spring.name}</div>`;
+      });
+      results.innerHTML = resultHTML;
+    } else {
+      results.innerHTML = "No results found.";
+    }
+  } catch (err) {
+   
+  }
+});
+console.log(submitEl)
+function filterResults(userSP, userPet, userCamp, userScuba, userFee){
+ 
+}
+
 
 // ******************************************
 // *******Modal listeners *******************
@@ -188,7 +211,6 @@ function getsprings() {
 
     })
   }
-
 
 
 

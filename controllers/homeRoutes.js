@@ -34,9 +34,10 @@ router.get('/springs/:id', async (req, res) => {
     });
 
     const springs = springData.get({ plain: true });
-
+    
+  
     res.render('spring', {
-      springs,
+      springs, 
     })
   } catch (err) {
     res.status(500).json(err);
@@ -63,6 +64,22 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+router.get('/admin', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] }
+    });
+    console.log(userData);
+    const user = userData.get({ plain: true });
+    console.log(user);
+    if (user.permissions === "admin") {
+      res.render('admin');
+    } else {res.render('homepage')};
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -77,6 +94,60 @@ router.get('/login', (req, res) => {
 // Route to input a new spring 
 router.get('/newspring', (req, res) => {
   res.render('newspring')
+});
+
+
+router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', async (req, res) => {
+  if (req.params.spvalue === "true"){
+    spvalue = true
+  }else {
+    spvalue = false
+  };
+  if (req.params.petvalue === "true"){
+    petvalue = true
+  }else {
+    petvalue = false
+  };
+  if (req.params.campingvalue === "true"){
+    campingvalue = true
+  }else {
+    campingvalue = false
+  };
+  if (req.params.scubavalue === "true"){
+    scubavalue = true
+  }else {
+    scubavalue = false
+  };
+  if (req.params.userfee === "free"){
+    userfee = "free"}
+    else{ userfee = "*"}
+ 
+
+  try {
+    const springData = await Spring.findAll({
+      
+      where:{
+        
+          statepark: spvalue,
+        pets: petvalue,
+        camping: campingvalue,
+        scuba: scubavalue,
+        userfee: userfee
+
+      },
+    });
+    res.render('homepage', {
+      springs
+      
+    });
+    if (!springData) {
+      res.status(404).json({ message: 'your search did not match any filters!' });
+      return;
+    }
+    res.status(200).json(springData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 
