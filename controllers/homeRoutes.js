@@ -6,14 +6,20 @@ router.get('/', async (req, res) => {
   try {
     // Get all springs and JOIN with user data
     const springData = await Spring.findAll({
-    
+
     });
 
     // Serialize data so the template can read it
-    const springs = springData.map((spring) => spring.get({ plain: true }));
+    const springs = springData.map((spring) => {
+      const plainspring = spring.get({ plain: true })
+      plainspring.distance = 20;
+      console.log(plainspring);
+      return plainspring;
+    });
 
     // // Pass serialized data and session flag into template
-    res.render('homepage', { springs
+    res.render('homepage', {
+      springs
       // logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -24,15 +30,18 @@ router.get('/', async (req, res) => {
 router.get('/springs/:id', async (req, res) => {
   try {
     const springData = await Spring.findByPk(req.params.id, {
-      
+
     });
 
     const springs = springData.get({ plain: true });
 
-    res.render('spring', {springs,
-})}catch(err){
-  res.status(500).json(err);
-}})
+    res.render('spring', {
+      springs,
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 
 
@@ -67,7 +76,7 @@ router.get('/login', (req, res) => {
 });
 
 // Route to input a new spring 
-router.get('/newspring', (req,res) => {
+router.get('/newspring', (req, res) => {
   res.render('newspring')
 });
 

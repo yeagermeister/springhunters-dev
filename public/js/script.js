@@ -11,7 +11,7 @@ const dropdownEl = document.querySelector("#dropdown");
 
 // const cardContainerEl = document.querySelector("#spring-card");
 // let cardEl;
-
+var springarray;
 // // Elements for the modal
 // const modal = document.getElementById("myModal");
 // const btnNew = document.getElementById("btnNew");
@@ -140,18 +140,26 @@ const dropdownEl = document.querySelector("#dropdown");
 //   document.location.assign("./newspring.html");
 // });
 
+
 // init();
+
 
 
 function populateDropdown() {
 	// replace `octocat` with anyone else's GitHub username
 	const conn = "http://127.0.0.1:3001/api/springs/";
 
+function getsprings() {
+	
+	var requestSpringObjects = "http://127.0.0.1:3001/api/springs/";
+
+
 	fetch(conn)
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
+
 			console.log(data.length)
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].name, data[i].id)
@@ -174,6 +182,10 @@ function populateDropdown() {
       //   }
       // }
       }
+
+			return springarray = data;
+      console.log(data);
+
 		});
 
 }
@@ -191,6 +203,7 @@ function populateDropdown() {
 // 			console.log(data)
 // 		});
 // }
+
 
 
 
@@ -217,3 +230,25 @@ function insertDistanceToPark(){
 getUserLoc();
 // getsprings();
 populateDropdown();
+
+// function getUserLoc(){
+//   navigator.geolocation.getCurrentPosition(position => {
+//     const userLat = position.coords.latitude;
+//     const userLng = position.coords.longitude;
+//     const userLoc = new google.maps.LatLng(userLat, userLng);
+//     sessionStorage.setItem(`userLoc`, JSON.stringify(userLoc));
+//     console.log(userLoc)
+//     var locationLatLng = new google.maps.LatLng(spring.lat, spring.lng);
+//     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng)
+//   })
+// }
+// function insertDistanceToPark(){
+//   const distanceSpanEl = document.getElementById("#distance");
+//   let distanceInMeters = google.maps.geometry.spherical.computeDistanceBetween(userLoc, );
+//         let distanceInMiles = distanceInMeters / 1609.344;
+//         let rounded = Math.round(distanceInMiles)
+//         distanceSpanEl.textContent = rounded + ' miles away';
+//   }
+// getUserLoc();
+getsprings().then(console.log(springarray));
+
