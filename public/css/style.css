@@ -1,5 +1,8 @@
 
-
+#map {
+  width: 100%;
+  height: 50%;
+}
 .img-border {
 
     background-color: rgb(181,229,227);
