@@ -121,7 +121,9 @@ router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', as
       },
     });
     console.log(springData);
-    res.redirect('homepage', {
+    const springs = springData.get({ plain: true });
+    console.log(springs);
+    res.render('homepage', {
       springs
     });
   } catch (err) {
