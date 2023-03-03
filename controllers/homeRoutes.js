@@ -69,8 +69,9 @@ router.get('/admin', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] }
     });
-
+    console.log(userData);
     const user = userData.get({ plain: true });
+    console.log(user);
     if (user.permissions === "admin") {
       res.render('admin');
     } else {res.render('homepage')};
