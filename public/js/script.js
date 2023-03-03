@@ -121,7 +121,6 @@ submitEl.addEventListener("click", async function(event) {
    
   }
 });
-console.log(submitEl)
 function filterResults(userSP, userPet, userCamp, userScuba, userFee){
  
 }
@@ -186,8 +185,6 @@ function getsprings() {
       return response.json();
     })
     .then(function (data) {
-
-      console.log(data.length)
       for (let i = 0; i < data.length; i++) {
         const anchor = document.createElement('a');
         anchor.href = `${server}/springs/${data[i].id}`
@@ -208,12 +205,8 @@ function getsprings() {
       let distanceInMiles = distance / 1609.344;
       let rounded = Math.round(distanceInMiles);
       distanceEl.innerHTML = rounded + ' miles away';
-
     })
   }
-
-
-
 
   async function init() {
     const springarray = await fetchsprings();
@@ -223,7 +216,6 @@ function getsprings() {
       let lat = springarray[i].lat;
       let lng = springarray[i].lng
       getUserLoc(lat, lng, distanceEl);
-      
     }
     getsprings();
   }
