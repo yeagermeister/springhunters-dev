@@ -34,9 +34,10 @@ router.get('/springs/:id', async (req, res) => {
     });
 
     const springs = springData.get({ plain: true });
-
+    
+  
     res.render('spring', {
-      springs,
+      springs, 
     })
   } catch (err) {
     res.status(500).json(err);

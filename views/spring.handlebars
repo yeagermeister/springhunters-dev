@@ -7,7 +7,7 @@
 		<div class="col-sm">
 
 			<ul class="springs-list">
-				<li id="">{{springs.description}}</li>
+				<li id="{{springs.id}}">{{springs.description}}</li>
 				<li id="distance">Distance to spring</li>
 				<li id="{{springs.fee}}">Admission Fees
 					{{springs.fee}}
@@ -35,6 +35,8 @@
 						<span class="text-center" id="temperature"></span>
 						<span id="condition"></span>
 						</p>
+						<p id="springlat"class="hidden">{{springs.lat}}</p>
+						<p id="springlng"class="hidden">{{springs.lng}}</p>
 					</article>
 
 					
@@ -46,6 +48,6 @@
 		
   	</div>
 </div>
-  
+  <script type="module" src="../../js/stupidmapscript.js"></script>
 
 

@@ -192,7 +192,6 @@ function getsprings() {
 
 
 
-
   async function init() {
     const springarray = await fetchsprings();
     for (let i = 0; i < springarray.length; i++) {
