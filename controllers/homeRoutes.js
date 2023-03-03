@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all springs and JOIN with user data
+    // Get all springs
     const springData = await Spring.findAll({
 
     });
