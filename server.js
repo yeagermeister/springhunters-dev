@@ -47,5 +47,5 @@ app.use(routes);
 
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("http://localhost:3001"));
+  app.listen(PORT, () => console.log('\x1b[31m%s\x1b[0m','http://localhost:3001'));
 });

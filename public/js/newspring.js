@@ -7,13 +7,6 @@ const stateParkM = document.querySelector("#stateparkm");
 const petFriendlyM = document.getElementById("petfriendlym");
 const zipcodeM = document.querySelector("#zipcodem")
 
-// const springEl = document.querySelector("#spring");
-// const descEl = document.querySelector("#desc");
-// const campEl = document.querySelector("#camp");
-// const petEl = document.querySelector("#pet");
-// const addressEl = document.querySelector("#address");
-// //dom selectors
-
 // //function that initializes on page startup
 // function init() {
 //     let newSpringText = JSON.parse(sessionStorage.getItem("newspring"));
@@ -44,6 +37,8 @@ newSpring.addEventListener("click", async function(event) {
   } else {sp = false};
   let zip = zipcodeM.value.trim();
 
+    console.log(spring, desc, zip);
+
   if (spring && desc && zip) {
     const response = await fetch('/api/newspring/', {
       method: 'POST',
@@ -59,4 +54,4 @@ newSpring.addEventListener("click", async function(event) {
 }
 });
 
-init();
+// init();
