@@ -1,3 +1,29 @@
+<div class="row mt-5 m-1">
+  <div class="card border border-rounded shadow spring-card flex-grow-1 p-2 m-1">
+	<form>
+  <div class="form-group">
+<p>Please enter the information below to add a new spring to the site.</p>
+        <p><label for="springnamem">Spring Name:</label></p>
+        <p><input type="text" id="springnamem" /></p>
+        <p><label for="descriptionm">Description of the spring:</label></p>
+        <p><input type="text" id="descriptionm" /></p>
+        <p><label for="campingm">Camping allowed?</label>
+          <input type="checkbox" id="campingm" />
+        </p>
+        <p><label for="petfriendlym">Pets allowed?</label>
+          <input type="checkbox" id="petfriendlym" />
+        </p>
+        <p><label for="stateparkm">Is this spring a statepark?</label>
+          <input type="checkbox" id="stateparkm" />
+        </p>
+        <p><label for="zipcodem">Please enter zipcode for the spring.</label></p>
+        <p><input type="text" id="zipcodem" /></p>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+  </div>
+
+{{!-- 
 {{#each springs as |spring| }}
 <div class="card border border-rounded shadow spring-card flex-grow-1 p-2 m-1">
     <h2>Your request to add a new spring is being reviewed by a site administrator.  New requests are usually aproved within 24 hours.</h2>
@@ -15,4 +41,4 @@
 	<p id="State Park">{{spring.statepark]}}</p>
 </div>
 
-{{/each}}
+{{/each}} --}}

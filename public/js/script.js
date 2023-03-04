@@ -11,14 +11,7 @@ const submitEl = document.querySelector('#searchBtn');
 // const distanceEl = document.querySelector()
 
 
-// // Elements for the modal
-const newSpring = document.querySelector("#newSpring");
-const springNameM = document.querySelector("#springnamem");
-const descriptionM = document.querySelector("#descriptionm");
-const campingM = document.getElementById("campingm");
-const stateParkM = document.querySelector("#stateparkm");
-const petFriendlyM = document.getElementById("petfriendlym");
-const zipcodeM = document.querySelector("#zipcodem")
+
 
 
 // function init() {
@@ -122,36 +115,7 @@ submitEl.addEventListener("click", async function(event) {
   window.location.replace(url);
 });
 
-// listener for the submit button when addin a spring
-newSpring.addEventListener("click", async function(event) {
-  event.preventDefault;
 
-  let camp = "";
-  let pet = "";
-  let sp = "";
-  let spring = springNameM.value.trim();
-  let desc = descriptionM.value.trim();
-  if (campingM.checked) {
-    camp = true;
-  } else {camp = false};
-  if (petFriendlyM.checked) {
-    pet = true
-  } else {pet = false};
-  if (stateParkM.checked) {
-    sp = true
-  } else {sp = false};
-  let zip = zipcodeM.value.trim();
-
-if (spring && desc && zip) {
-  const response = await fetch('/api/newspring/', {
-    method: 'POST',
-    body: JSON.stringify({spring, desc, zip, pet, sp, camp})
-  });
-}
-//puts new spring in sessionstorage, displays a new page asking for patience and notifying a server admin.  This will be changed once we have a database.
-  // sessionStorage.setItem("newspring", JSON.stringify(newspring));
-  // document.location.assign("./newspring.html");
-});
 
 
 // init();

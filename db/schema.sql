@@ -63,4 +63,5 @@ CREATE TABLE new_spring (
   pets BOOLEAN,
   statepark BOOLEAN,
   camping BOOLEAN,
+  user_id INT
 );

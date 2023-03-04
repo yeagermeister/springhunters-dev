@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Spring, User } = require('../models');
+const { Spring, User, NewSpring } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -106,6 +106,7 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.get('/admin', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -129,12 +130,16 @@ router.get('/login', (req, res) => {
     res.redirect('/profile');
     return;
   }
-
   res.render('login');
 });
 
 // Route to input a new spring 
-router.get('/newspring', withAuth, (req, res) => {
+router.get('/newspring', async (req, res) => {
+  let user = req.params.User;
+  
+  const springData = await NewSpring.findAll({
+    where: sequelize.literal(`${query}`)
+  });
   res.render('newspring')
 });
 

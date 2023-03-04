@@ -38,7 +38,9 @@ Comments.belongsTo(Spring,{
     onDelete: 'CASCADE'
 });
 
-
+NewSpring.belongsTo(User, {
+    foreignKey: 'user_id',
+});
 
 Spring.hasMany(Ratings, {
 foreignKey: 'rating_value',
