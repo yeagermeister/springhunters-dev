@@ -122,14 +122,6 @@ submitEl.addEventListener("click", async function(event) {
   window.location.replace(url);
 });
 
-// const newSpring = document.querySelector("#newSpring");
-// const springNameM = document.querySelector("#springnamem");
-// const descriptionM = document.querySelector("#descriptionm");
-// const campingM = document.getElementById("campingm");
-// const stateParkM = document.querySelector("#stateparkm");
-// const petFriendlyM = document.getElementById("petfriendlym");
-// const zipcodeM = document.querySelector("#zipcodem")
-
 // listener for the submit button when addin a spring
 newSpring.addEventListener("click", async function(event) {
   event.preventDefault;
@@ -157,8 +149,8 @@ if (spring && desc && zip) {
   });
 }
 //puts new spring in sessionstorage, displays a new page asking for patience and notifying a server admin.  This will be changed once we have a database.
-  sessionStorage.setItem("newspring", JSON.stringify(newspring));
-  document.location.assign("./newspring.html");
+  // sessionStorage.setItem("newspring", JSON.stringify(newspring));
+  // document.location.assign("./newspring.html");
 });
 
 
@@ -190,18 +182,18 @@ function getsprings() {
     });
   };
 
-  // function getUserLoc(lat, lng, distanceEl) {
-  //   navigator.geolocation.getCurrentPosition(position => {
-  //     const userLat = position.coords.latitude;
-  //     const userLng = position.coords.longitude;
-  //     const userLatLng = new google.maps.LatLng(userLat, userLng);
-  //     var springLatLng = new google.maps.LatLng(lat, lng);
-  //     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
-  //     let distanceInMiles = distance / 1609.344;
-  //     let rounded = Math.round(distanceInMiles);
-  //     distanceEl.innerHTML = rounded + ' miles away';
-  //   })
-  // }
+  function getUserLoc(lat, lng, distanceEl) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const userLat = position.coords.latitude;
+      const userLng = position.coords.longitude;
+      const userLatLng = new google.maps.LatLng(userLat, userLng);
+      var springLatLng = new google.maps.LatLng(lat, lng);
+      var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
+      let distanceInMiles = distance / 1609.344;
+      let rounded = Math.round(distanceInMiles);
+      distanceEl.innerHTML = rounded + ' miles away';
+    })
+  }
 
   async function init() {
     const springarray = await fetchsprings();
@@ -210,7 +202,7 @@ function getsprings() {
       let distanceEl = document.querySelector(`#spring${j}`);
       let lat = springarray[i].lat;
       let lng = springarray[i].lng
-      // getUserLoc(lat, lng, distanceEl);
+      getUserLoc(lat, lng, distanceEl);
     }
     getsprings();
   }
