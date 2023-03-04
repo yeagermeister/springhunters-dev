@@ -37,7 +37,7 @@ router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', as
   if (req.params.scubavalue === "true"){
     scubavalue = true
   } else {scubavalue = ""};
-  if (req.params.userfee === "free"){
+  if (req.params.userfee === "true"){
     feevalue = "free"
   } else {feevalue = ""};
   try {
@@ -55,7 +55,12 @@ router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', as
       res.status(404).json({ message: 'your search did not match any filters!' });
       return;
     }
-    res.status(200).json(springData);
+    const springs = springData.map((spring) => {
+      const plainspring = spring.get({ plain: true })
+    });
+    res.render('homepage', {springs});
+
+    // res.status(200).json(springData);
   } catch (err) {
     res.status(500).json(err);
   }

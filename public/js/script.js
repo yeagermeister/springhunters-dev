@@ -8,6 +8,7 @@ const campingAllowedEl = document.querySelector('#campingAllowed');
 const scubaDivingEl = document.querySelector('#scubaDiving');
 const pricingFeeEl = document.querySelector('#pricingFee');
 const submitEl = document.querySelector('#searchBtn');
+// const distanceEl = document.querySelector()
 
 // const cardContainerEl = document.querySelector("#spring-card");
 // let cardEl;
@@ -23,12 +24,6 @@ const submitEl = document.querySelector('#searchBtn');
 // const addressM = document.querySelector("#addressm");
 // const petFriendlyM = document.getElementById("petfriendlym");
 
-// Define Springs
-// These variables have to be declared with let because the distance and weather icon will be updated
-
-
-// let parks = [wekiwaSprings, silverSprings, rainbowSprings, rockSpringsRun, ginnieSprings, blueSpring, deLeonSprings, fanningSprings, manateeSprings, weekiWacheeSprings, itchetuckneeSprings, madisonSprings, royalSprings, bobsRiverPlace];
-// let springList = ["Wekiwa Springs State Park", "Silver Springs State Park", "Rainbow Springs State Park", "Rock Springs Run State Reserve", "Ginnie Springs", "Blue Spring State Park", "DeLeon Springs State Park", "Fanning Springs State Park", "Manatee Springs State Park", "Weeki Wachee Springs State Park", "Ichetucknee Springs State Park", "Madison Springs", "Royal Springs", "Bobs River Place"];
 
 // function init() {
 //   //For now are are using session storage to load all springs data into the users browser, this will not be needed once we have a database
@@ -100,30 +95,40 @@ submitEl.addEventListener("click", async function(event) {
   let userPet = petFriendlyEl.checked;
   let userCamp = campingAllowedEl.checked;
   let userScuba = scubaDivingEl.checked;
-  let userFee = pricingFeeEl.checked;
+  let userFee = pricingFeeEl.checked;    
+  let url = "http://localhost:3001/";
+  let i = 0;
 
-  try {
-    const response = await fetch(`/filtered/${userSP}/${userPet}/${userCamp}/${userScuba}/${userFee}`);
+  if (userSP === true) {i = i + 1};
+  if (userPet === true) {i = i + 1};
+  if (userCamp === true) {i = i + 1};
+  if (userScuba === true) {i = i + 1};
+  if (userFee === true) {i = i + 1};
 
-    const data = await response.json();
-    let results = document.getElementById("results");
-
-    if (data.length > 0) {
-      let resultHTML = "";
-      data.forEach(spring => {
-        resultHTML += `<div>${spring.name}</div>`;
-      });
-      results.innerHTML = resultHTML;
-    } else {
-      results.innerHTML = "No results found.";
-    }
-  } catch (err) {
-   
-  }
+  if (userSP === true) {url = url + "?spvalue=true"};
+  if ( i > 1 ) {
+    i = i - 1;
+    url = url + "&";
+  };
+  if (userPet === true) {url = url + "?petvalue=true"};
+  if ( i > 1 ) {
+    i = i - 1;
+    url = url + "&";
+  };
+  if (userCamp === true) {url = url + "?campingvalue=true"};
+  if ( i > 1 ) {
+    i = i - 1;
+    url = url + "&";
+  };
+  if (userScuba === true) {url = url + "?scubavalue=true"};
+  if ( i > 1 ) {
+    i = i - 1;
+    url = url + "&";
+  };
+  if (userFee === true) {url = url + "?userfee=true"};
+  console.log(url);
+  window.location.replace(url);
 });
-function filterResults(userSP, userPet, userCamp, userScuba, userFee){
- 
-}
 
 
 // ******************************************
@@ -173,9 +178,7 @@ async function fetchsprings() {
 
   const springlist = await (await fetch(requestSpringObjects)).json();
   return springlist;
-}
-
-
+};
 
 function getsprings() {
 
@@ -195,18 +198,18 @@ function getsprings() {
     });
   };
 
-  function getUserLoc(lat, lng, distanceEl) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const userLat = position.coords.latitude;
-      const userLng = position.coords.longitude;
-      const userLatLng = new google.maps.LatLng(userLat, userLng);
-      var springLatLng = new google.maps.LatLng(lat, lng);
-      var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
-      let distanceInMiles = distance / 1609.344;
-      let rounded = Math.round(distanceInMiles);
-      distanceEl.innerHTML = rounded + ' miles away';
-    })
-  }
+  // function getUserLoc(lat, lng, distanceEl) {
+  //   navigator.geolocation.getCurrentPosition(position => {
+  //     const userLat = position.coords.latitude;
+  //     const userLng = position.coords.longitude;
+  //     const userLatLng = new google.maps.LatLng(userLat, userLng);
+  //     var springLatLng = new google.maps.LatLng(lat, lng);
+  //     var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
+  //     let distanceInMiles = distance / 1609.344;
+  //     let rounded = Math.round(distanceInMiles);
+  //     distanceEl.innerHTML = rounded + ' miles away';
+  //   })
+  // }
 
   async function init() {
     const springarray = await fetchsprings();
@@ -215,7 +218,7 @@ function getsprings() {
       let distanceEl = document.querySelector(`#spring${j}`);
       let lat = springarray[i].lat;
       let lng = springarray[i].lng
-      getUserLoc(lat, lng, distanceEl);
+      // getUserLoc(lat, lng, distanceEl);
     }
     getsprings();
   }
