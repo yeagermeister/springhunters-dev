@@ -1,7 +1,8 @@
-// Select DOM elements
-const dropdownEl = document.querySelector("#dropdown");
+Global vars
 let server = "http://localhost:3001";
 // let server = "https://springhunters1.herokuapp.com";
+
+
 const stateParkEl = document.querySelector('#statePark');
 const petFriendlyEl = document.querySelector('#petFriendly');
 const campingAllowedEl = document.querySelector('#campingAllowed');
@@ -115,36 +116,14 @@ submitEl.addEventListener("click", async function(event) {
   window.location.replace(url);
 });
 
-
-
-
-// init();
-
+// populates the springlist array for later use
 async function fetchsprings() {
-
   var requestSpringObjects = `${server}/api/springs/`;
-
   const springlist = await (await fetch(requestSpringObjects)).json();
   return springlist;
 };
 
-function getsprings() {
-
-  let conn = `${server}/api/springs/`;
-  fetch(conn)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      for (let i = 0; i < data.length; i++) {
-        const anchor = document.createElement('a');
-        anchor.href = `${server}/springs/${data[i].id}`
-        anchor.innerText = `${data[i].name}`;
-        anchor.classList = "dropdown-item"
-        dropdownEl.appendChild(anchor);
-      }
-    });
-  };
+// function to get the list of springs from the database and populate the dropdown list
 
   function getUserLoc(lat, lng, distanceEl) {
     navigator.geolocation.getCurrentPosition(position => {
