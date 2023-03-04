@@ -21,28 +21,32 @@ const zipcodeM = document.querySelector("#zipcodem")
 newSpring.addEventListener("click", async function(event) {
   event.preventDefault;
 
-  let camp = "";
-  let pet = "";
-  let sp = "";
-  let spring = springNameM.value.trim();
-  let desc = descriptionM.value.trim();
+  let camping = "";
+  let pets = "";
+  let statepark = "";
+  let name = springNameM.value.trim();
+  let description = descriptionM.value.trim();
+  let zipcode = zipcodeM.value.trim();
   if (campingM.checked) {
-    camp = true;
-  } else {camp = false};
+    camping = true;
+  } else {camping = false};
   if (petFriendlyM.checked) {
-    pet = true
-  } else {pet = false};
+    pets = true
+  } else {pets = false};
   if (stateParkM.checked) {
-    sp = true
-  } else {sp = false};
-  let zip = zipcodeM.value.trim();
+    statepark = true
+  } else {statepark = false};
 
-    console.log(spring, desc, zip);
+
+//   temp = JSON.stringify({name, description, zipcode, pets, statepark, camping});
+//     console.log(temp);
+//     window.localStorage.setItem('temp', temp);
+
 
   if (spring && desc && zip) {
     const response = await fetch('/api/newspring/', {
       method: 'POST',
-      body: JSON.stringify({spring, desc, zip, pet, sp, camp}),
+      body: JSON.stringify({name, description, zipcode, pets, statepark, camping}),
       headers: { 'Content-Type': 'application/json' },
     });
 
