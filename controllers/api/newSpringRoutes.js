@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
         .catch((err) => {
             res.json(err);
         })
+        res.render('/newspring', {})
 });
 
 module.exports = router;

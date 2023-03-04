@@ -7,8 +7,8 @@ router.get('/', async (req, res) => {
   try {
     let query = "";
     let i = 0;
+
     if (req.query.spvalue === "true"){i = i + 1;};
-    console.log(i, query);
     if (req.params.petvalue === "true"){i = i + 1;};
     if (req.params.campingvalue === "true"){i = i + 1;};
     if (req.params.scubavalue === "true"){i = i + 1;};
@@ -16,19 +16,16 @@ router.get('/', async (req, res) => {
   
     if (req.query.spvalue === "true"){
       query = `statepark = ${req.query.spvalue}`;
-      console.log("first", query);
     };
     if (i > 1) {
       query = query + " AND ";
       i = i - 1;
-      console.log(i, query);
     };
     if (req.query.petvalue === "true"){
       query = query + `pets = ${req.query.petvalue}`;
       if (i > 1) {
         query = query + " AND ";
         i = i - 1;
-        console.log(i, query);
       };
     };
     if (req.query.campingvalue === "true"){
@@ -36,7 +33,6 @@ router.get('/', async (req, res) => {
       if (i > 1) {
         query = query + " AND ";
         i = i - 1;
-        console.log(i, query);
       };
     };
     if (req.query.scubavalue === "true"){
@@ -44,7 +40,6 @@ router.get('/', async (req, res) => {
       if (i > 1) {
         query = query + " AND ";
         i = i - 1;
-        console.log(i, query);
       };
     };
     if (req.query.userfee === "true"){
@@ -76,7 +71,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/springs/:id', async (req, res) => {
+router.get('/springs/:id', withAuth, async (req, res) => {
   try {
     const springData = await Spring.findByPk(req.params.id, {
 
@@ -139,7 +134,7 @@ router.get('/login', (req, res) => {
 });
 
 // Route to input a new spring 
-router.get('/newspring', (req, res) => {
+router.get('/newspring', withAuth, (req, res) => {
   res.render('newspring')
 });
 

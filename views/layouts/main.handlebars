@@ -27,17 +27,21 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
+        {{#unless logged_in}}
         <li class="nav-item">
-
           <a class="nav-link" href="/login">Login or Signup</a>
         </li>
+        {{/unless}}
+           {{!-- {{#if logged_in}} --}}
         <li class="nav-item">
-          <a class="nav-link d-none" href="#">Logout</a>
+          <a class="nav-link" href="#">Logout</a>
         </li>
+        {{!-- {{/if}} --}}
+        {{!-- {{#if logged_in}} --}}
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#newSpringModal">Submit a new spring</a>
-
         </li>
+        {{!-- {{/if}} --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
