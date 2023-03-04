@@ -23,7 +23,7 @@
   </div>
   </div>
 
-{{!-- 
+
 {{#each springs as |spring| }}
 <div class="card border border-rounded shadow spring-card flex-grow-1 p-2 m-1">
     <h2>Your request to add a new spring is being reviewed by a site administrator.  New requests are usually aproved within 24 hours.</h2>
@@ -36,9 +36,11 @@
 	<h3>Pet Friendly</h3>
 	<p id="pet">{{spring.pets}}</p>
 	<h3>Zipcode:</h3>
-	<p id="address">{{spring.zipcode]}}</p>
-	<h3>State Park:</h3>
-	<p id="State Park">{{spring.statepark]}}</p>
+	{{!-- <p id="address">{{spring.zipcode]}}</p>
+	<h3>State Park:</h3> --}}
+	{{!-- <p id="State Park">{{spring.statepark]}}</p> --}}
 </div>
 
-{{/each}} --}}
+{{/each}}
+
+<script src="../js/newspring.js"></script>

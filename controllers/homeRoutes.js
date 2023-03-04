@@ -136,11 +136,19 @@ router.get('/login', (req, res) => {
 // Route to input a new spring 
 router.get('/newspring', async (req, res) => {
   let user = req.params.User;
-  
+
   const springData = await NewSpring.findAll({
-    where: sequelize.literal(`${query}`)
+    where: user_id = user
   });
-  res.render('newspring')
+  const springs = springData.map((spring) => {
+    const plainspring = spring.get({ plain: true })
+    plainspring.distance = 20;
+
+    return plainspring;
+  });
+  res.render('newspring', {
+    springs
+  })
 });
 
 module.exports = router;
