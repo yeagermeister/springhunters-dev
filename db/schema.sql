@@ -62,5 +62,5 @@ CREATE TABLE new_spring (
   zipcode INT(5),
   pets BOOLEAN,
   statepark BOOLEAN,
-  camping BOOLEAN,
+  camping BOOLEAN
 );

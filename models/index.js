@@ -38,8 +38,6 @@ Comments.belongsTo(Spring,{
     onDelete: 'CASCADE'
 });
 
-
-
 Spring.hasMany(Ratings, {
 foreignKey: 'rating_value',
 onDelete: 'CASCADE'

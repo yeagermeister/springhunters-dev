@@ -33,7 +33,7 @@ NewSpring.init(
     camping: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    },
+    }
   },
   {
     sequelize,

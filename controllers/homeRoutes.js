@@ -1,32 +1,77 @@
 const router = require('express').Router();
-const { Spring, User } = require('../models');
+const sequelize = require('../config/connection');
+const { Spring, User, NewSpring } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
+    let query = "";
+    let i = 0;
+
+    if (req.query.spvalue === "true"){i = i + 1;};
+    if (req.params.petvalue === "true"){i = i + 1;};
+    if (req.params.campingvalue === "true"){i = i + 1;};
+    if (req.params.scubavalue === "true"){i = i + 1;};
+    if (req.query.userfee === "true"){i = i + 1;};
+  
+    if (req.query.spvalue === "true"){
+      query = `statepark = ${req.query.spvalue}`;
+    };
+    if (i > 1) {
+      query = query + " AND ";
+      i = i - 1;
+    };
+    if (req.query.petvalue === "true"){
+      query = query + `pets = ${req.query.petvalue}`;
+      if (i > 1) {
+        query = query + " AND ";
+        i = i - 1;
+      };
+    };
+    if (req.query.campingvalue === "true"){
+      query = query + `camping = ${req.query.campingvalue}`;
+      if (i > 1) {
+        query = query + " AND ";
+        i = i - 1;
+      };
+    };
+    if (req.query.scubavalue === "true"){
+      query = query + `scuba = ${req.query.scubavalue}`;
+      if (i > 1) {
+        query = query + " AND ";
+        i = i - 1;
+      };
+    };
+    if (req.query.userfee === "true"){
+      query = query + `fees = "free"`;
+      };
+  
+      console.log(i, query);
     // Get all springs
     const springData = await Spring.findAll({
-
+      where: sequelize.literal(`${query}`)
+      
     });
 
     // Serialize data so the template can read it
     const springs = springData.map((spring) => {
       const plainspring = spring.get({ plain: true })
       plainspring.distance = 20;
+
       return plainspring;
     });
 
     // // Pass serialized data and session flag into template
     res.render('homepage', {
       springs
-      // logged_in: req.session.logged_in 
+   
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/springs/:id', async (req, res) => {
+router.get('/springs/:id', withAuth, async (req, res) => {
   try {
     const springData = await Spring.findByPk(req.params.id, {
 
@@ -35,9 +80,7 @@ router.get('/springs/:id', async (req, res) => {
     const springs = springData.get({ plain: true });
     
   
-    res.render('spring', {
-      springs, 
-    })
+    res.render('spring', {springs})
   } catch (err) {
     res.status(500).json(err);
   }
@@ -63,13 +106,16 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.get('/admin', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] }
     });
+    console.log(userData);
     const user = userData.get({ plain: true });
+    console.log(user);
     if (user.permissions === "admin") {
       res.render('admin');
     } else {res.render('homepage')};
@@ -84,52 +130,21 @@ router.get('/login', (req, res) => {
     res.redirect('/profile');
     return;
   }
-
   res.render('login');
 });
 
 // Route to input a new spring 
-router.get('/newspring', (req, res) => {
-  res.render('newspring')
+router.get('/newspring', async (req, res) => {
+  const springData = await NewSpring.findAll({});
+  const springs = springData.map((spring) => {
+    const plainspring = spring.get({ plain: true })
+    plainspring.distance = 20;
+
+    return plainspring;
+  });
+  res.render('newspring', {
+    springs
+  })
 });
-
-
-router.get('/filtered/:spvalue/:petvalue/:campingvalue/:scubavalue/:userfee', async (req, res) => {
-  if (req.params.spvalue === "true"){
-    spvalue = true
-  }else {spvalue = ""  };
-  if (req.params.petvalue === "true"){
-    petvalue = true
-  }else {petvalue = ""  };
-  if (req.params.campingvalue === "true"){
-    campingvalue = true
-  }else {campingvalue = ""};
-  if (req.params.scubavalue === "true"){
-    scubavalue = true
-  }else {scubavalue = ""};
-  if (req.params.userfee === "true"){
-    userfee = "free"}
-    else{ userfee = ""}
-  try {
-    const springData = await Spring.findAll({
-      where:{
-        statepark: spvalue,
-        pets: petvalue,
-        camping: campingvalue,
-        scuba: scubavalue,
-        fees: userfee
-      },
-    });
-    console.log(springData);
-    const springs = springData.get({ plain: true });
-    console.log(springs);
-    res.render('homepage', {
-      springs
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 
 module.exports = router;

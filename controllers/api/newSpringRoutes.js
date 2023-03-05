@@ -27,10 +27,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
        NewSpring.create(req.body)
         .then((newNewSpring) => {
-            res.json(newNewSpring);
+            res.status(200).json(newNewSpring);
         })
         .catch((err) => {
-            res.json(err);
+            res.status(200).json(err);
         })
 });
 
