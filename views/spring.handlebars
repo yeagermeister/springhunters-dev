@@ -28,13 +28,14 @@
 					</div>
 				<article id="map" class=" springs-container bg-danger">Map</article>
 				<div class="col-sm">
-						<article id="weather" class="springs-container bg-custom ">
+						<article  class="springs-container bg-custom ">
 						<h3 id="city" class="text-center">Test weather</h3>
-						<p class="text-center"><img id="icon" src="" alt="Weather icon"></p>
+						<p id="weather" class="text-center"></p>
 						<p class="text-center">
 						<span class="text-center" id="temperature"></span>
 						<span id="condition"></span>
 						</p>
+						<p id="springZip"class="hidden">{{springs.zipcode}}</p>
 						<p id="springlat"class="hidden">{{springs.lat}}</p>
 						<p id="springlng"class="hidden">{{springs.lng}}</p>
 					</article>
@@ -48,6 +49,7 @@
 		
   	</div>
 </div>
-  <script async await type="module"  src="../../js/stupidmapscript.js"></script>
+  <script async await type="module"  src="../../js/mapScript.js"></script>
+  <script async await type="module"  src="../../js/springs.js"></script>
 
 
