@@ -4,18 +4,20 @@ let server = "http://localhost:3001";
 let springZip = document.querySelector("#springZip").innerHTML.trim();
 let zipcode = Number(springZip);
 ////////
-let springLat = document.querySelector("#springlat").innerHTML.trim();
-let springLng = document.querySelector("#springlng").innerHTML.trim();
 
-Number(springLat);
-Number(springLng);
+
+
 let mapId = document.querySelector('#map');
 
-console.log(springLat, springLng)
 
-let [numSpringLat, numSpringLng] = initMap(springLat, springLng);
-console.log(numSpringLat, numSpringLng); // -25.2744 -81.4638
 
+function initMap(){
+  let springLat = document.querySelector("#springlat").innerHTML.trim();
+  let springLng = document.querySelector("#springlng").innerHTML.trim();
+  var lat = Number(springLat);
+  var lng = Number(springLng);
+  
+  var myLatLng = {lat: lat, lng: lng};
         // Set up the map options
         const mapOptions = {
           zoom: 10,
@@ -23,9 +25,13 @@ console.log(numSpringLat, numSpringLng); // -25.2744 -81.4638
         };
         // Create the map
         const map = new google.maps.Map(mapId, mapOptions);
+        
         // Add a marker to the map at the specified coordinates
-       
-    
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+        });
+      };
     
       
       
@@ -41,8 +47,6 @@ function init() {
 
 //populates the dropdown menu using shortname id's
 fetchsprings();
-
-getSprings();
  
   getWeather(zipcode, weatherEl);
   initMap();
@@ -63,7 +67,6 @@ async function fetchsprings() {
 
 //utilizes the weather api from rapidapi to display weather
 function getWeather(zipcode, weatherEl) {  
-  console.log(zipcode, "weather")  
   const API_KEY = '4a9c9446f7msh1bdc5860de01184p135179jsne7c04d560051';
   const API_HOST = 'weatherapi-com.p.rapidapi.com';
   const options = {
