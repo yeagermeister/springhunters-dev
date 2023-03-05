@@ -31,10 +31,7 @@ console.log(numSpringLat, numSpringLng); // -25.2744 -81.4638
         // Create the map
         const map = new google.maps.Map(mapId, mapOptions);
         // Add a marker to the map at the specified coordinates
-        // const marker = new google.maps.Marker({
-        //   position: {lat: springLat, lng: springLng},
-        //   map: map
-        // });
+       
     
     
       

@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
       query = query + `fees = "free"`;
       };
   
-      console.log(i, query);
+      
     // Get all springs
     const springData = await Spring.findAll({
       where: sequelize.literal(`${query}`)
@@ -71,7 +71,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/springs/:id', withAuth, async (req, res) => {
+router.get('/springs/:id', async (req, res) => {
   try {
     const springData = await Spring.findByPk(req.params.id, {
 
