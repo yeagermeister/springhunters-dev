@@ -51,7 +51,15 @@
 </div>
   <script>
   var myGlobal = {
-	myVar: {{springs.id}}
+	selectedSpringId: {{springs.id}},
+	selectedSpringFees: '{{springs.fees}}',
+	selectedSpringPets: {{springs.pets}},
+	selectedSpringStatepark: {{springs.statepark}},
+	selectedSpringCamping: {{springs.camping}},
+	selectedSpringScuba: {{springs.scuba}},
+	selectedSpringLat: {{springs.lat}},
+	selectedSpringLng: {{springs.lng}},
+	selectedSpringZip: {{springs.zipcode}},
   }
   </script>
   <script type="module"  src="../../js/springs.js" defer></script>

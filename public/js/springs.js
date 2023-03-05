@@ -1,12 +1,20 @@
-console.log(myGlobal.myVar)
-let springId = myGlobal.myVar;
-console.log(springId)
 
 let server = "http://localhost:3001";
 // let server = "https://springhunters1.herokuapp.com";
 
-let springZip = document.querySelector("#springZip").innerHTML.trim();
-let zipcode = Number(springZip);
+
+let springId = myGlobal.myVar;
+let springFees = myGlobal.selectedSpringFees;
+let springPets = myGlobal.selectedSpringPets;
+let springsP = myGlobal.selectedSpringStatepark;
+let springCamping = myGlobal.selectedSpringCamping;
+let springScuba = myGlobal.selectedSpringScuba;
+let lat = myGlobal.selectedSpringLat;
+let lng = myGlobal.selectedSpringLng;
+let zipcode = myGlobal.selectedSpringZip;
+
+
+
 ////////
 
 
@@ -16,16 +24,13 @@ let mapId = document.querySelector('#map');
 
 
 function initMap(){
-  let springLat = document.querySelector("#springlat").innerHTML.trim();
-  let springLng = document.querySelector("#springlng").innerHTML.trim();
-  var lat = Number(springLat);
-  var lng = Number(springLng);
+ 
   
   var myLatLng = {lat: lat, lng: lng};
         // Set up the map options
         const mapOptions = {
           zoom: 10,
-          center: new google.maps.LatLng(springLat, springLng)
+          center: new google.maps.LatLng(lat, lng)
         };
         // Create the map
         const map = new google.maps.Map(mapId, mapOptions);
@@ -51,6 +56,7 @@ function init() {
 
 //populates the dropdown menu using shortname id's
 fetchsprings();
+
  
   getWeather(zipcode, weatherEl);
   initMap();
@@ -64,22 +70,10 @@ fetchsprings();
 async function fetchsprings() {
   var requestSpringObjects = `${server}/api/springs/`;
   const springlist = await (await fetch(requestSpringObjects)).json();
+  console.log(springlist)
   return springlist;
   };
 
-
-// if id of spring iterated over matches req params id, {
-//   selectedspring;
-//   selectedspring.pets 
-//   if selectedspring.pets = ''{
-//     innerhtml= "no pets allowed, sorry"
-//   }
-
-
-
-//   selectedspring.lat
-// }
-  
 
 //utilizes the weather api from rapidapi to display weather
 function getWeather(zipcode, weatherEl) {  
