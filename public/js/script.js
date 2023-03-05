@@ -68,10 +68,12 @@ function getweather(zipcode, weatherEl) {
       .then(response => response.json())
       .then(data => {
         // chooses which icon to display
+        const temperature = data.current.temp_f;
         const iconUrl = data.current.condition.icon;
         let imageEl = document.createElement('img')
-        imageEl.setAttribute("src", iconUrl);
+        imageEl.setAttribute("src", iconUrl);        
         weatherEl.appendChild(imageEl);
+        // weatherEl.innerHTML(`${temperature}°F`);
       })
       //displays error message
       .catch(err => console.error(err));
@@ -139,7 +141,7 @@ submitEl.addEventListener("click", async function(event) {
     url = url + "&";
   };
   if (userFee === true) {url = url + "?userfee=true"};
-  console.log(url);
+  
   window.location.replace(url);
 });
 

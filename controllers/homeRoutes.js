@@ -138,7 +138,6 @@ router.get('/newspring', async (req, res) => {
   const springData = await NewSpring.findAll({});
   const springs = springData.map((spring) => {
     const plainspring = spring.get({ plain: true })
-    plainspring.distance = 20;
 
     return plainspring;
   });
