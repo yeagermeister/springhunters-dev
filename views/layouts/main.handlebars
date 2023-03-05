@@ -40,6 +40,11 @@
           <a class="nav-link" href="#">Logout</a>
         </li>
         {{/if}}
+        {{#if logged_in}} 
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Site Administration</a>
+        </li>
+        {{/if}}
         <li class="nav-item">
           {{!-- data-toggle="modal" data-target="#newSpringModal"> --}}
           <a class="nav-link" href="/newspring"> Submit a new spring</a>
