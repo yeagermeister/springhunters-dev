@@ -1,3 +1,7 @@
+console.log(myGlobal.myVar)
+let springId = myGlobal.myVar;
+console.log(springId)
+
 let server = "http://localhost:3001";
 // let server = "https://springhunters1.herokuapp.com";
 
@@ -63,6 +67,18 @@ async function fetchsprings() {
   return springlist;
   };
 
+
+// if id of spring iterated over matches req params id, {
+//   selectedspring;
+//   selectedspring.pets 
+//   if selectedspring.pets = ''{
+//     innerhtml= "no pets allowed, sorry"
+//   }
+
+
+
+//   selectedspring.lat
+// }
   
 
 //utilizes the weather api from rapidapi to display weather
