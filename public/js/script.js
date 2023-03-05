@@ -30,27 +30,27 @@ async function init() {
       let zipcode = springarray[i].zipcode;
       getweather(zipcode, weatherEl)
     }
-    getSprings();
+    // getSprings();
 };
 
 // Get the springs from the database and populate the dropdown
-function getSprings() {
-  let conn = `${server}/api/springs/`;
-  const dropdownEl = document.querySelector("#dropdown");
-  fetch(conn)
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          for (let i = 0; i < data.length; i++) {
-              const anchor = document.createElement('a');
-              anchor.href = `${server}/springs/${data[i].id}`
-              anchor.innerText = `${data[i].name}`;
-              anchor.classList = "dropdown-item"
-              dropdownEl.appendChild(anchor);
-          }
-      });
-};
+// function getSprings() {
+//   let conn = `${server}/api/springs/`;
+//   const dropdownEl = document.querySelector("#dropdown");
+//   fetch(conn)
+//       .then(function (response) {
+//           return response.json();
+//       })
+//       .then(function (data) {
+//           for (let i = 0; i < data.length; i++) {
+//               const anchor = document.createElement('a');
+//               anchor.href = `${server}/springs/${data[i].id}`
+//               anchor.innerText = `${data[i].name}`;
+//               anchor.classList = "dropdown-item"
+//               dropdownEl.appendChild(anchor);
+//           }
+//       });
+// };
 
   // Send a GET request to the RapidAPI weather API
 function getweather(zipcode, weatherEl) {    

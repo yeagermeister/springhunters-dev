@@ -3,45 +3,38 @@ let server = "http://localhost:3001";
 
 let springZip = document.querySelector("#springZip").innerHTML.trim();
 let zipcode = Number(springZip);
-console.log(typeof(zipcode));
+////////
+let springLat = document.querySelector("#springlat").innerHTML.trim();
+let springLng = document.querySelector("#springlng").innerHTML.trim();
 
+Number(springLat);
+Number(springLng);
+let mapId = document.querySelector('#map');
+
+console.log(springLat, springLng)
+
+let [numSpringLat, numSpringLng] = initMap(springLat, springLng);
+console.log(numSpringLat, numSpringLng); // -25.2744 -81.4638
+
+        // Set up the map options
+        const mapOptions = {
+          zoom: 10,
+          center: new google.maps.LatLng(springLat, springLng)
+        };
+        // Create the map
+        const map = new google.maps.Map(mapId, mapOptions);
+        // Add a marker to the map at the specified coordinates
+       
+    
+    
+      
+      
  
-//dom selectors
-// const dropdownEl = document.querySelector("#dropdown");
-// let parknameEl = document.querySelector("#parkname");
-// let descriptionEl = document.querySelector("#description");
-// let distanceEl = document.querySelector("#distance");
-// let admissionEl = document.querySelector("#admission");
-// let petsEl = document.querySelector("#pets");
-// let stateparkEl = document.querySelector("#statepark");
-// let campingEl = document.querySelector("#camping");
-// let gatorEl = document.querySelector("#gator");
-// let scubaEl = document.querySelector("#scuba");
-// let ratingEl = document.querySelector("#rating");
-// let noteEl = document.querySelector("#notetext");
+////////
 let pictureEl = document.querySelector("#picture");
 let temperatureEl = document.querySelector("#temperature");
 
-//sset a default spring for the page, in case someone navigated here from somewhere other than index.html
-// let park = "Wekiwa Springs State Park";
-// let dropdownList = ["Wekiwa Springs State Park", "Silver Springs State Park", "Rainbow Springs State Park", "Rock Springs Run State Reserve", "Ginnie Springs", "Blue Spring State Park", "DeLeon Springs State Park", "Fanning Springs State Park", "Manatee Springs State Park", "Weeki Wachee Springs State Park", "Ichetucknee Springs State Park", "Madison Springs", "Royal Springs", "Bobs River Place"];
 
-// weather API variables
-// let locationEl = document.querySelector('#parkname');
-// let location = locationEl.innerHTML;
-// storedParks = JSON.parse(sessionStorage.getItem(location));
-
-// Google Maps Variables
-// var mapId = document.getElementById("map");
-// var parkName = document.getElementById("parkname");
-// var storedParks = JSON.parse(sessionStorage.getItem(`parks`));
-// var userCoords = JSON.parse(sessionStorage.getItem(`userLoc`));
-// var parkLoc;
-// var map = mapId;
-// let distance = sessionStorage.getItem("distance");
-// let marker;
-// var miles;
-// var zipcode;
 let weatherEl = document.querySelector(`#weather`);
 Number(weatherEl)
 function init() {
@@ -49,30 +42,14 @@ function init() {
 //populates the dropdown menu using shortname id's
 fetchsprings();
 
-getSprings()
+getSprings();
  
   getWeather(zipcode, weatherEl);
+  initMap();
  };
 
 // This will run on page load to populate the drop down list
-function getSprings() {
-  
-  let conn = `${server}/api/springs/`;
-  const dropdownEl = document.querySelector("#dropdown");
-  fetch(conn)
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          for (let i = 0; i < data.length; i++) {
-              const anchor = document.createElement('a');
-              anchor.href = `${server}/springs/${data[i].id}`
-              anchor.innerText = `${data[i].name}`;
-              anchor.classList = "dropdown-item"
-              dropdownEl.appendChild(anchor);
-          }
-      });
-};
+
 
 
 // populates the springlist array for later use
@@ -112,64 +89,7 @@ function getWeather(zipcode, weatherEl) {
     .catch(err => console.error(err));
 };
 
-  // Loop through the array of objects
   
-
-// Initialize and add the map
-// var mapId = document.getElementById("map");
-// var parkName = document.getElementById("parkname");
-// var storedParks = JSON.parse(sessionStorage.getItem(`parks`));
-// //const API_KEY = 'AIzaSyAUPFIpucG-X584hME5DFs-4Yu28ny2vVk';
-// var parkLat;
-// var parkLng;
-// var map = mapId;
-
-
-//   // Initialize the map
-//   function initMap() {
-
-// // Loop through the array of objects
-// for (var i = 0; i < storedParks.length; i++) {
-//   // Check if the element's value matches the title of the current object
-//   if (parkName.innerHTML == storedParks[i].name) {
-//     // If the values match, retrieve the value property of the object
-//     var parkLat = storedParks[i].lat;
-//     var parkLng = storedParks[i].lng;
-//     // You can now use the value variable in your code
-    
-//   }
-// }
-
-
-//     // Set up the map options
-//     const mapOptions = {
-//       zoom: 10,
-//       center: new google.maps.LatLng(parkLat, parkLng)
-//     };
-//     // Create the map
-//     const map = new google.maps.Map(mapId, mapOptions);
-//     // Add a marker to the map at the specified coordinates
-//     const marker = new google.maps.Marker({
-//       position: {lat: parkLat, lng: parkLng},
-//       map: map
-//     });
-
-
-//   };
-
-
-
-// Click listeners
-// Get the correct park array from session storage when the drop down list is used
-// $("#dropdown").on("change", function() {
-//   let value = dropdownEl.options[dropdownEl.selectedIndex].value;
-//   park = JSON.parse(sessionStorage.getItem(value));
-//   zipcode = park.zipcode
-//   populateParkInfo(park);
-//   getWeather(zipcode);
-//   initMap();
-// });
-
 
   
 //calls the init function on page startup
