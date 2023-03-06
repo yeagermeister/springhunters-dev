@@ -14,14 +14,14 @@ Comments.init(
     user_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'user',
+        model: 'users',
         key: 'id',
       }
     },
     spring_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'spring',
+        model: 'springs',
         key: 'id',
       }
     },
@@ -37,12 +37,12 @@ Comments.init(
       type: DataTypes.STRING,
       primaryKey: true
 
-    },
-    comment_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-
     }
+    // comment_id: {
+    //   type: DataTypes.INTEGER,
+    //   primaryKey: true
+
+    // }
   },
   {
     sequelize,

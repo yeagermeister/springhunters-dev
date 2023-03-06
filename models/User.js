@@ -72,6 +72,7 @@ User.init(
     freezeTableName: false,
     underscored: true,
     modelName: 'user',
+    tableName: 'users'
   }
 );
 

@@ -76,21 +76,20 @@ router.get('/springs/:id', async (req, res) => {
   try {
     console.log('made it here')
     const springData = await Spring.findByPk(req.params.id, {
-      include: [
-        {
-          model: Comments, 
-          attributes: [ 'comment'],
-        },
-        {
-          model: User,
-          attributes: [ 'Name']
-        }
-      ]
+      // include: [
+      //   {
+      //     model: Comments, 
+      //     attributes: [ 'comment'],
+      //   }
+      //   // {
+      //   //   model: User,
+      //   //   attributes: [ 'Name']
+      //   // }
+      // ]
     });
     
     const springs = springData.get({ plain: true });
     
-  console.log(springs, springData)
     res.render('spring', {springs })
   } catch (err) {
     res.status(500).json(err);

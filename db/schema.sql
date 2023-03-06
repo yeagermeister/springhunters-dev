@@ -37,21 +37,19 @@ CREATE TABLE springs (
   lng DECIMAL (7,4)
 );
 
-CREATE TABLE ratings (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id INT,
-  spring_id INT,
-  rating INT,
-  comment_id INT,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
-  FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
-);
+-- CREATE TABLE ratings (
+--   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   user_id INT,
+--   spring_id INT,
+--   rating INT,
+--   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+--   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
+-- );
 CREATE TABLE comments (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
   spring_id INT,
   comment TEXT,
-  comment_id INT,
   rating_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
