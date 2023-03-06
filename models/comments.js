@@ -35,7 +35,12 @@ Comments.init(
     },
     comment: {
       type: DataTypes.STRING,
-      primaryKey: true
+      
+
+    },
+    comment_id: {
+      type: DataTypes.INTEGER,
+      
 
     }
   },
