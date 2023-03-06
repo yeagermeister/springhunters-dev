@@ -2,8 +2,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Springs and Swimming Holes of Florida</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
-    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Kenia&family=Noto+Sans+JP:wght@100&family=Playfair+Display:ital,wght@1,600&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -20,7 +22,7 @@
     <a class="navbar-brand" href="#">
       <img src="../images/logo.png" width="50" height="50" alt="">
     </a>
-    <a class="navbar-brand" href="#">Springhunters</a>
+    <a id="texty"class="navbar-brand" href="#">Springhunters</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,30 +31,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a id="textyhome"class="nav-link texty" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         {{#unless logged_in}}
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login or Signup</a>
+          <a id="textylogin" class="nav-link texty" href="/login">Login or Signup</a>
         </li>
         {{/unless}}
            {{#if logged_in}} 
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a id="textylogout"class="nav-link texty" href="#">Logout</a>
         </li>
         {{/if}}
         {{#if logged_in}} 
         <li class="nav-item">
-          <a class="nav-link" href="/admin">Site Administration</a>
+          <a id="textysiteadmin"class="nav-link texty" href="/admin">Site Administration</a>
         </li>
         {{/if}}
         <li class="nav-item">
           {{!-- data-toggle="modal" data-target="#newSpringModal"> --}}
-          <a class="nav-link" href="/newspring"> Submit a new spring</a>
+          <a id="textysubmit"class="nav-link texty" href="/newspring"> Submit a new spring</a>
         </li>
         {{!-- {{/if}} --}}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <li class="nav-item dropdown texty">
+          <a id="textyselect"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Select a spring
           </a>
@@ -123,44 +125,6 @@
     </div>
   </div>
 </div>
-
-<!-- New Spring Modal -->
-{{!-- <div class="modal fade" id="newSpringModal" tabindex="-1" role="dialog" aria-labelledby="newSpringModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newSpringModalCenterTitle">Submit a new spring</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Please enter the information below to add a new spring to the site.</p>
-        <p><label for="springnamem">Spring Name:</label></p>
-        <p><input type="text" id="springnamem" /></p>
-        <p><label for="descriptionm">Description of the spring:</label></p>
-        <p><input type="text" id="descriptionm" /></p>
-        <p><label for="campingm">Camping allowed?</label>
-          <input type="checkbox" id="campingm" />
-        </p>
-        <p><label for="petfriendlym">Pets allowed?</label>
-          <input type="checkbox" id="petfriendlym" />
-        </p>
-        <p><label for="stateparkm">Is this spring a statepark?</label>
-          <input type="checkbox" id="stateparkm" />
-        </p>
-        <p><label for="zipcodem">Please enter zipcode for the spring.</label></p>
-        <p><input type="text" id="zipcodem" /></p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="newSpring" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

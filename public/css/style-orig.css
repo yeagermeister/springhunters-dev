@@ -8,7 +8,7 @@
 }
 /* colours list items on the springs list */
 .springs-list li {
-  color: black;
+  color: white;
   list-style-type: none;
 }
 /* ensures the map displays */
