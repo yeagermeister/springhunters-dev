@@ -7,14 +7,12 @@ router.post('/', async (req, res) => {
     const newComment = await Comments.create({
       user_id: req.session.user_id,
       spring_id: req.body.spring_id,
-      // rating_id: req.body.rating_id,
       comment: req.body.comment
     });
 
     res.status(200).json(newComment);
   } catch (err) {
     res.status(400).json(err);
-    console.log(err)
   }
 });
 
@@ -29,10 +27,8 @@ router.get('/', async (req, res) => {
 }
   catch (err) {
     res.status(500).json(err)
-    console.log(err)
   }
-
-})
+});
 
 // GET all comments for a specific spring
 router.get('/spring/:id', async (req, res) => {
