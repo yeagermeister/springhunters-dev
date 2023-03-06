@@ -21,17 +21,17 @@ Ratings.init(
     spring_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'spring',
+        model: 'spring',comment
         key: 'id'
       }
     },
-    comment_id: {
-      type: DataTypes.INTEGER,
-      references:{
-        model: 'comment',
-        key: 'id'
-      }
-    },
+    // comment_id: {
+    //   type: DataTypes.INTEGER,
+    //   references:{
+    //     model: 'comment',
+    //     key: 'id'
+    //   }
+    // },
     rating: {
     type: DataTypes.INTEGER,
     allowNull: false,
