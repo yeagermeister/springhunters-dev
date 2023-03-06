@@ -9,13 +9,20 @@
 			<ul class="springs-list">
 				<li id="{{springs.id}}">{{springs.description}}</li>
 				<li id="distance">Distance to spring</li>
-				<li id="{{springs.fee}}">Admission Fees
-					{{springs.fee}}
-				</li>
-				<li id="{{springs.pets}}">Pets {{springs.pets}}</li>
-				<li id="{{springs.stateparks}}">State Park? {{springs.stateparks}}</li>
-				<li id="{{springs.camping}}">Camping? {{springs.camping}}</li>
-				<li id="{{springs.scuba}}">Scuba Diving Allowed {{springs.scuba}}</li>
+
+
+				
+				<li id="fee" data-Fees= "{{springs.fees}}">Fees:{{springs.fees}}</li>
+				
+				<li id="pets" data-pets="{{springs.pets}}"></li>
+
+				<li id="stateparks" data-stateparks = "{{springs.statepark}}"></li>
+				<li id="camping" data-camping = "{{springs.camping}}"></li>
+				<li id="scuba" data-ScubaDiving = "{{springs.scuba}}"></li>
+				
+				
+				
+				
 				<li id="rating">My rating
 					<!-- creates a personal star rating -->
 				<div class="rating">

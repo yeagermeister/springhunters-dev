@@ -60,7 +60,7 @@
     "pets": 1,
     "statepark": 1,
     "camping": 1,
-    "scuba": 0,
+    "scuba": 1,
     "lat": 29.1354,
     "lng": -81.3621
   },
