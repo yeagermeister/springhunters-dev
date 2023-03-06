@@ -9,13 +9,20 @@
 			<ul class="springs-list">
 				<li id="{{springs.id}}">{{springs.description}}</li>
 				<li id="distance">Distance to spring</li>
-				<li id="{{springs.fee}}">Admission Fees
-					{{springs.fee}}
-				</li>
-				<li id="{{springs.pets}}">Pets {{springs.pets}}</li>
-				<li id="{{springs.stateparks}}">State Park? {{springs.stateparks}}</li>
-				<li id="{{springs.camping}}">Camping? {{springs.camping}}</li>
-				<li id="{{springs.scuba}}">Scuba Diving Allowed {{springs.scuba}}</li>
+
+
+				
+				<li id="fee" data-Fees= "{{springs.fees}}">Fees:{{springs.fees}}</li>
+				
+				<li id="pets" data-pets="{{springs.pets}}"></li>
+
+				<li id="stateparks" data-stateparks = "{{springs.statepark}}"></li>
+				<li id="camping" data-camping = "{{springs.camping}}"></li>
+				<li id="scuba" data-ScubaDiving = "{{springs.scuba}}"></li>
+				
+				
+				
+				
 				<li id="rating">My rating
 					<!-- creates a personal star rating -->
 				<div class="rating">
@@ -26,20 +33,20 @@
   					<span><input class="five-pointed-star" type="radio" name="rating" id="str1" value="1">1<label for="str1"></label></span>
 					</div>
 					</div>
-				<article id="map" class=" springs-container bg-danger">Map</article>
+				
 				<div class="col-sm">
-						<article  class="springs-container bg-custom ">
-						<h3 id="city" class="text-center">Test weather</h3>
+						 <article  class="springs-container bg-custom ">
+						
 						<p id="weather" class="text-center"></p>
 						<p class="text-center">
 						<span class="text-center" id="temperature"></span>
 						<span id="condition"></span>
 						</p>
-						<p id="springZip"class="hidden">{{springs.zipcode}}</p>
-						<p id="springlat"class="hidden">{{springs.lat}}</p>
-						<p id="springlng"class="hidden">{{springs.lng}}</p>
+						<p id="springZip"class="d-none hidden">{{springs.zipcode}}</p>
+						<p id="springlat"class="d-none hidden">{{springs.lat}}</p>
+						<p id="springlng"class="d-none hidden">{{springs.lng}}</p>
 					</article>
-
+					<article id="map" class=" springs-container bg-danger">Map</article>
 					
 			
 		</div>
@@ -49,7 +56,19 @@
 		
   	</div>
 </div>
-  <script async await type="module"  src="../../js/mapScript.js"></script>
-  <script async await type="module"  src="../../js/springs.js"></script>
+  <script>
+  var myGlobal = {
+	selectedSpringId: {{springs.id}},
+	selectedSpringFees: '{{springs.fees}}',
+	selectedSpringPets: {{springs.pets}},
+	selectedSpringStatepark: {{springs.statepark}},
+	selectedSpringCamping: {{springs.camping}},
+	selectedSpringScuba: {{springs.scuba}},
+	selectedSpringLat: {{springs.lat}},
+	selectedSpringLng: {{springs.lng}},
+	selectedSpringZip: {{springs.zipcode}},
+  }
+  </script>
+  <script type="module"  src="../../js/springs.js" defer></script>
 
 

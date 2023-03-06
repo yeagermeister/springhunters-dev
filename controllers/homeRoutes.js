@@ -113,15 +113,46 @@ router.get('/admin', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] }
     });
-    console.log(userData);
     const user = userData.get({ plain: true });
-    console.log(user);
     if (user.permissions === "admin") {
       res.render('admin');
     } else {res.render('homepage')};
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/useradmin', withAuth, async (req, res) => {
+
+    // Find the logged in user based on the session ID
+    // const userData = await User.findByPk(req.session.user_id, {
+    //   attributes: { exclude: ['password'] }
+    // });
+    // const user = userData.get({ plain: true });
+ 
+    const userAll = await User.findAll();
+    const users = userAll.map((user) => {
+      const plainuser = user.get({ plain: true })
+    })
+
+    // if (user.permissions === "admin") {
+      res.render('useradmin', {
+        users
+      });
+    // } else {res.render('homepage')};
+
+});
+
+router.get('/springadmin', async (req, res) => {
+  const springData = await NewSpring.findAll({});
+  const springs = springData.map((spring) => {
+    const plainspring = spring.get({ plain: true })
+
+    return plainspring;
+  });
+  res.render('springadmin', {
+    springs
+  })
 });
 
 router.get('/login', (req, res) => {
