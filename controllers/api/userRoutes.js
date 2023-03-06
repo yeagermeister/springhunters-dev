@@ -58,4 +58,37 @@ router.post('/logout', (req, res) => {
   }
 });
 
+router.post('/resetpassword', async (req, res) => {
+  try {
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    // if (!userData) {
+    //   return res.status(400).json({ message: "User not found" });
+    // }
+
+    // // Verify old password before updating
+    // const validPassword = await userData.checkPassword(req.body.oldPassword);
+    // if (!validPassword) {
+    //   return res.status(400).json({ message: "Invalid password" });
+    // }
+
+    // // Update password
+    // userData.password = req.body.newPassword;
+    // await userData.save();
+
+    // req.session.save(() => {
+    //   req.session.user_id = userData.id;
+    //   req.session.logged_in = true;
+
+  //     res.status(200).json({ message: "Password updated successfully" });
+  //   });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+
+
+
 module.exports = router;
