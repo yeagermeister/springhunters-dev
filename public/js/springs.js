@@ -1,6 +1,6 @@
 
-let server = "http://localhost:3001";
-// let server = "https://springhunters1.herokuapp.com";
+// let server = "http://localhost:3001";
+let server = "https://springhunters1.herokuapp.com";
 
 
 let springId = myGlobal.myVar;
