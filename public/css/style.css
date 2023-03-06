@@ -1,3 +1,35 @@
+/* Use San Francisco font for text */
+body {
+  font-family: "San Francisco", sans-serif;
+}
+
+/* Use minimalist color scheme */
+body {
+  background-color: #f8f8f8;
+  color: #3c3c3e;
+}
+
+/* Use accent color for buttons */
+.button {
+  background-color: #007aff;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Hover and active animations for buttons */
+.button:hover,
+.button:active {
+  background-color: #007aff;
+  color: #fff;
+  transform: scale(1.05);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
 #map {
   width: 100%;
@@ -11,11 +43,15 @@
 .spring-card {
     background-color:#c5dfec;
 }
+.springs-description {
+  background-color: #007aff; 
+}
+
 
 .body-background{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url("../images/background-img3.jpg");
+    background-repeat: repeat;
+    background-size: 100%;
+    background-image: url("../images/new-background_img_dev2.jpeg");
     background-color:#c5dfec;
 }
 
@@ -111,3 +147,4 @@
     transform: rotate(-70deg);
     content:"";
    }
+ 
