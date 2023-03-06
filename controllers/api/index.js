@@ -3,7 +3,7 @@ const userRoutes = require('./userRoutes');
 const springRoutes = require('./springRoutes');
 const newSpringRoutes = require('./newSpringRoutes');
 // const ratingsRoutes = require('./ratingsRoutes')
-const commentsroutes = require('./commentsroutes')
+const commentsroutes = require('./commentsRoutes')
 
 router.use('/users', userRoutes);
 router.use('/springs', springRoutes);
