@@ -164,4 +164,4 @@ if (stateparksValue === "true") {
 
   
 //calls the init function on page startup
-init();
+window.onload = function() {init();}
