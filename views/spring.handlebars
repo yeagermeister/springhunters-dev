@@ -1,6 +1,6 @@
 
 <div class="row">
-		<div class="container spring-card mt-5">
+		<div class="container springbox spring-card mt-5">
 			<h3 class="text-center" id="parkname">{{springs.name}}</h3>
 		<img src="../.{{springs.image_url}}" class="w-30 img-thumbnail mx-auto" alt="an image of a spring">
 
@@ -15,6 +15,22 @@
   <li class="list-group-item" id="stateparks" data-stateparks="{{springs.statepark}}">State Park: {{springs.statepark}}</li>
   <li class="list-group-item" id="camping" data-camping="{{springs.camping}}">Camping: {{springs.camping}}</li>
   <li class="list-group-item" id="scuba" data-ScubaDiving="{{springs.scuba}}">Scuba Diving Allowed: {{springs.scuba}}</li>
+   <li id="weather" class="list-group-item" ><span class="text-center" id="temperature"></span>
+						<span id="condition"></span></li>
+    <li class="list-group-item springs-container map-container" id="map"></li>
+  {{!-- <div class="col-sm">
+						 <article  class="springs-container bg-custom ">
+						
+						<p id="weather" class="text-center"></p>
+						<p class="text-center">
+						<span class="text-center" id="temperature"></span>
+						<span id="condition"></span>
+						</p>
+						<p id="springZip"class="d-none hidden">{{springs.zipcode}}</p>
+						<p id="springlat"class="d-none hidden">{{springs.lat}}</p>
+						<p id="springlng"class="d-none hidden">{{springs.lng}}</p>
+					</article>
+					<article id="map" class=" ">Map</article> --}}
 </ul>
 
 				
@@ -29,19 +45,7 @@
 					</div>
 					</div> --}}
 				
-				<div class="col-sm">
-						 <article  class="springs-container bg-custom ">
-						
-						<p id="weather" class="text-center"></p>
-						<p class="text-center">
-						<span class="text-center" id="temperature"></span>
-						<span id="condition"></span>
-						</p>
-						<p id="springZip"class="d-none hidden">{{springs.zipcode}}</p>
-						<p id="springlat"class="d-none hidden">{{springs.lat}}</p>
-						<p id="springlng"class="d-none hidden">{{springs.lng}}</p>
-					</article>
-					<article id="map" class=" springs-container bg-danger">Map</article>
+				
 					
 			
 		</div>
