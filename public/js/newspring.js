@@ -43,7 +43,7 @@ newSpring.addEventListener("click", async function(event) {
 //     window.localStorage.setItem('temp', temp);
 
 
-  if (spring && desc && zip) {
+  if (name && description && zipcode) {
     const response = await fetch('/api/newspring/', {
       method: 'POST',
       body: JSON.stringify({name, description, zipcode, pets, statepark, camping}),
@@ -54,6 +54,7 @@ newSpring.addEventListener("click", async function(event) {
       window.location.replace('/newspring');
     } else {
       alert(response.statusText);
+      console.log(uh-oh)
     }
 }
 });

@@ -14,22 +14,47 @@ router.post('/', async (req, res) => {
     res.status(200).json(newComment);
   } catch (err) {
     res.status(400).json(err);
+    console.log(err)
   }
 });
+
+
+router.get('/', async (req, res) => {
+  try{
+    const commentData = await Comments.findAll();
+    // const comments = commentData.map((comment)=> {
+    //   const plaincomments = comment.get({plain: true})
+      
+   res.status(200).json(commentData);
+}
+  catch (err) {
+    res.status(500).json(err)
+    console.log(err)
+  }
+
+})
 
 // GET all comments for a specific spring
 router.get('/spring/:id', async (req, res) => {
   try {
-    const commentsData = await Comments.findAll({
-      where: { spring_id: req.params.id },
-      include: { model: User }
-    });
-
-    res.status(200).json(commentsData);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+    const commentData = await Comments.findAll({
+      where:{ spring_id: req.params.id}
+    }); 
+    const comments = commentData.map((comment)=> {
+      const plaincomment = comment.get({plain: true})
+      return plaincomment;
+    })
+      if(!commentData){
+        res.status(404).json({ message: 'no comments with this id!'});
+        return;
+      }else{
+        
+      res.status(200).json(comments);}
+    } catch (err) {
+      res.status(500).json(err)
+      console.log(err)
+    }
+  });
 
 
 // create a middleware function to check if the user is an admin

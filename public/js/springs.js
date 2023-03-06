@@ -1,9 +1,11 @@
+// const { Comments } = require("../../models");
+// const { beforeFindAfterExpandIncludeAll } = require("../../models/User");
 
 let server = "http://localhost:3001";
 // let server = "https://springhunters1.herokuapp.com";
 
 
-let springId = myGlobal.myVar;
+let springId = myGlobal.selectedSpringId;
 let springFees = myGlobal.selectedSpringFees;
 let springPets = myGlobal.selectedSpringPets;
 let springsP = myGlobal.selectedSpringStatepark;
@@ -51,7 +53,7 @@ function initMap(){
         const userLatLng = new google.maps.LatLng(userLat, userLng);
         // Number(springlat);
         // Number(springlng);
-        console.log(springlat);
+        
           
         var springLatLng = new google.maps.LatLng(springlat, springlng);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
@@ -75,7 +77,7 @@ function init() {
 getUserLoc();
 //populates the dropdown menu using shortname id's
 fetchsprings();
-
+fetchcomments();
  
   getWeather(zipcode, weatherEl);
   initMap();
@@ -91,7 +93,6 @@ fetchsprings();
 async function fetchsprings() {
   var requestSpringObjects = `${server}/api/springs/`;
   const springlist = await (await fetch(requestSpringObjects)).json();
-  console.log(springlist)
   return springlist;
   };
 
@@ -157,11 +158,24 @@ if (stateparksValue === "true") {
     scubaEl.textContent = "Yes, scuba diving allowed!";
   } else {
     scubaEl.textContent = "No scuba diving, sorry.";
-    console.log(scubaValue)
+    
     
   }
 };
 
+  
+async function fetchcomments() {
+  var requestComments = `${server}/api/comments/spring/${springId}`;
+  const commentlist = await (await fetch(requestComments)).json();
+  console.log(commentlist)
+  return commentlist;
+  };
+
+// fetch api Comments
+// where spring_id matches Id
+// for each commentdata
+// append article
+// innerhtml article comment
   
 //calls the init function on page startup
 window.onload = function() {init();}

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Spring, User, NewSpring } = require('../models');
+const { Spring, User, NewSpring, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -74,13 +74,22 @@ router.get('/', async (req, res) => {
 router.get('/springs/:id', async (req, res) => {
   try {
     const springData = await Spring.findByPk(req.params.id, {
-
+      include: [
+        {
+          model: Comments, 
+          attributes: [ 'comment'],
+        },
+        {
+          model: User,
+          attributes: [ 'Name']
+        }
+      ]
     });
 
     const springs = springData.get({ plain: true });
     
   
-    res.render('spring', {springs})
+    res.render('spring', {springs, comments, })
   } catch (err) {
     res.status(500).json(err);
   }

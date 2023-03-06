@@ -11,7 +11,7 @@ function getSprings() {
       })
       .then(function (data) {
           for (let i = 0; i < data.length; i++) {
-            console.log(data.length)
+            
               const anchor = document.createElement('a');
               anchor.href = `${server}/springs/${data[i].id}`
               anchor.innerText = `${data[i].name}`;
