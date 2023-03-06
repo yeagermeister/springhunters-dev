@@ -45,4 +45,4 @@ Comments.belongsTo(Spring,{
 // });
 
 // module.exports = { User, Spring, Comments, Ratings, NewSpring };
-module.exports = { User, Spring};
+module.exports = { User, Spring, NewSpring};

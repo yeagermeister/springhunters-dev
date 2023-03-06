@@ -77,7 +77,7 @@ function init() {
 getUserLoc();
 //populates the dropdown menu using shortname id's
 fetchsprings();
-fetchcomments();
+// fetchcomments();
  
   getWeather(zipcode, weatherEl);
   initMap();
@@ -139,13 +139,12 @@ if (petsValue === "true") {
   petsEl.textContent = "Yes, pets are allowed!";
 } else {
   petsEl.textContent = "No pets, sorry.";
-  console.log(typeof petsValue);
 }
 if (stateparksValue === "true") {
   stateparksEl.textContent = "This is a statepark!";
 } else {
   stateparksEl.textContent = "This is not a statepark.";
-  console.log( stateparksValue);
+  
 }
   if (campingValue === "true") {
     campingEl.textContent = "Yes, camping allowed!";
@@ -164,12 +163,12 @@ if (stateparksValue === "true") {
 };
 
   
-async function fetchcomments() {
-  var requestComments = `${server}/api/comments/spring/${springId}`;
-  const commentlist = await (await fetch(requestComments)).json();
-  console.log(commentlist)
-  return commentlist;
-  };
+// async function fetchcomments() {
+//   var requestComments = `${server}/api/comments/spring/${springId}`;
+//   const commentlist = await (await fetch(requestComments)).json();
+//   console.log(commentlist)
+//   return commentlist;
+//   };
 
 // fetch api Comments
 // where spring_id matches Id
