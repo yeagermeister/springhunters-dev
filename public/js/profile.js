@@ -1,14 +1,19 @@
-const newFormHandler = async (event) => {
+document
+  .querySelector('.pw')
+  .addEventListener('submit', resetpw);
+
+
+const resetpw = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#spring-name').value.trim();
-  // const needed_funding = document.querySelector('#spring-funding').value.trim();
-  const description = document.querySelector('#spring-desc').value.trim();
+  const oldpw = document.querySelector('#oldPassword').value.trim();
+  
+  const newpw = document.querySelector('#password').value.trim();
 
-  if (name && description) {
+  if (oldpw && newpw) {
     const response = await fetch(`/api/users/:userId/resetPassword`, {
       method: 'POST',
-      body: JSON.stringify({ name, description }),
+      body: JSON.stringify({oldPassword: oldpw, newPassword: newpw }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -37,35 +42,35 @@ const newFormHandler = async (event) => {
 //   res.render('profile', {user, ratedSprings, commentedSprings});
 // });
 
-function newPassword() {
-  let oldPassword = document.getElementById('oldPassword').value;
-  let newPassword = document.getElementById('password').value;
-  let upDatePassword = document.getElementsByClassName('btn btn-primary').value;
+// function newPassword() {
+//   let oldPassword = document.getElementById('oldPassword').value;
+//   let newPassword = document.getElementById('password').value;
+//   let upDatePassword = document.getElementsByClassName('btn btn-primary').value;
 
-  if (oldPassword!=""&&newPassword!=""&&upDatePassword!="") 
-  { 
-    if(oldPassword!=newPassword)
-    {
-      if(newPassword==upDatePassword)
-      {
-        return true;
-      }
-      else {
-        alert("Confirm old password");
-        return false;
-      }
-    }
-    else {
-      alert("New password cannot be the same as old password");
-      return false;
-    }
-  }
-  else {
-    alert("All fields are required");
-    return false;
-  }
+//   if (oldPassword!=""&&newPassword!=""&&upDatePassword!="") 
+//   { 
+//     if(oldPassword!=newPassword)
+//     {
+//       if(newPassword==upDatePassword)
+//       {
+//         return true;
+//       }
+//       else {
+//         alert("Confirm old password");
+//         return false;
+//       }
+//     }
+//     else {
+//       alert("New password cannot be the same as old password");
+//       return false;
+//     }
+//   }
+//   else {
+//     alert("All fields are required");
+//     return false;
+//   }
 
-}
+// }
 
 
 
@@ -87,9 +92,7 @@ function newPassword() {
 //   }
 // };
 
-document
-  .querySelector('.profile-form')
-  .addEventListener('submit', newFormHandler);
+
 
 // document
 //   .querySelector('.project-list')

@@ -145,5 +145,4 @@ submitEl.addEventListener("click", async function(event) {
   window.location.replace(url);
 });
 
-  init();
-  
+window.onload = function() {init();}
