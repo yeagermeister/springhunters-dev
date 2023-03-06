@@ -3,6 +3,16 @@ body {
   font-family: "San Francisco", sans-serif;
 }
 
+#textyhome,
+#texty,
+#textylogin,
+#textylogout,
+#textysiteadmin,
+#textysubmit,
+#textyselect{
+  color:#ffffff;
+  font-size: x-large;
+}
 /* Use minimalist color scheme */
 body {
   background-color: #7ea310;
@@ -21,7 +31,9 @@ body {
   /* background: linear-gradient(to left, rgb(47, 167, 107), rgb(29, 134, 204)); */
   background-color: #28666e;
   color: #ffffff;
-  height:200vh;
+  height:100%;
+  padding: 2%;
+  margin-bottom: 2%;
 }
 
 /* Use accent color for buttons */
@@ -52,19 +64,17 @@ body {
 .navbar {
   background-color: #28666e;
   color: #ffffff;
+  font-family: 'Gloock', serif;
 }
 #map {
   width: 100%;
-  height: 100%;
+  height: 50vh;
 }
 .img-border {
 
     background-color: rgb(181,229,227);
 }
-.map-container{
-  width: 100px;
-  height: 100px;
-}
+
 
 
 .spring-card {
@@ -72,6 +82,7 @@ body {
     color: #ffffff;
   text-align: center;
   border-radius: 25px;
+  font-family: 'Gloock', serif;
 }
 .springs-description {
   background-color: #007aff; 
@@ -81,8 +92,8 @@ body {
 .body-background{
     background-repeat: repeat;
     background-size: 100%;
-    background-image: url("../images/pexels-lisa-fotios-734973.jpg");
-    background-color:#8da5a0;
+    /* background-image: url("../images/"); */
+    background-color:#508f73;
       /* background: linear-gradient(to right, rgb(47, 167, 107), rgb(29, 134, 204)); */
     
 }
