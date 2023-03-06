@@ -9,13 +9,12 @@ let springPets = myGlobal.selectedSpringPets;
 let springsP = myGlobal.selectedSpringStatepark;
 let springCamping = myGlobal.selectedSpringCamping;
 let springScuba = myGlobal.selectedSpringScuba;
-let lat = myGlobal.selectedSpringLat;
-let lng = myGlobal.selectedSpringLng;
+let springlat = myGlobal.selectedSpringLat;
+let springlng = myGlobal.selectedSpringLng;
 let zipcode = myGlobal.selectedSpringZip;
 
 
 
-////////
 
 
 
@@ -26,11 +25,11 @@ let mapId = document.querySelector('#map');
 function initMap(){
  
   
-  var myLatLng = {lat: lat, lng: lng};
+  var myLatLng = {lat: springlat, lng: springlng};
         // Set up the map options
         const mapOptions = {
           zoom: 10,
-          center: new google.maps.LatLng(lat, lng)
+          center: new google.maps.LatLng(springlat,springlng)
         };
         // Create the map
         const map = new google.maps.Map(mapId, mapOptions);
@@ -45,7 +44,26 @@ function initMap(){
       
       
  
-////////
+      function getUserLoc() {
+        navigator.geolocation.getCurrentPosition(position => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+        const userLatLng = new google.maps.LatLng(userLat, userLng);
+        // Number(springlat);
+        // Number(springlng);
+        console.log(springlat);
+          
+        var springLatLng = new google.maps.LatLng(springlat, springlng);
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(userLatLng, springLatLng);
+        let distanceInMiles = distance / 1609.344;
+        let rounded = Math.round(distanceInMiles);
+        let distanceEl = document.querySelector(`#distance`);
+        distanceEl.innerHTML = rounded + ' miles away from your location';
+        
+        })
+        };
+
+
 let pictureEl = document.querySelector("#picture");
 let temperatureEl = document.querySelector("#temperature");
 
@@ -53,13 +71,16 @@ let temperatureEl = document.querySelector("#temperature");
 let weatherEl = document.querySelector(`#weather`);
 Number(weatherEl)
 function init() {
-
+  
+getUserLoc();
 //populates the dropdown menu using shortname id's
 fetchsprings();
 
  
   getWeather(zipcode, weatherEl);
   initMap();
+  populatelist();
+
  };
 
 // This will run on page load to populate the drop down list
@@ -101,8 +122,45 @@ function getWeather(zipcode, weatherEl) {
     //displays error message
     .catch(err => console.error(err));
 };
+function populatelist(){
+const stateparksEl = document.querySelector('#stateparks')
+const stateparksValue =stateparksEl.getAttribute("data-stateparks");
+const campingEl = document.querySelector('#camping')
+const campingValue =campingEl.getAttribute("data-camping");
+const scubaEl = document.querySelector('#scuba')
+const scubaValue =scubaEl.getAttribute("data-ScubaDiving");
 
-  
+const petsEl = document.querySelector("#pets");
+const petsValue = petsEl.getAttribute("data-pets");
+
+
+if (petsValue === "true") {
+  petsEl.textContent = "Yes, pets are allowed!";
+} else {
+  petsEl.textContent = "No pets, sorry.";
+  console.log(typeof petsValue);
+}
+if (stateparksValue === "true") {
+  stateparksEl.textContent = "This is a statepark!";
+} else {
+  stateparksEl.textContent = "This is not a statepark.";
+  console.log( stateparksValue);
+}
+  if (campingValue === "true") {
+    campingEl.textContent = "Yes, camping allowed!";
+  } else {
+    campingEl.textContent = "No camping, sorry.";
+    
+  }
+
+  if (scubaValue === "true") {
+    scubaEl.textContent = "Yes, scuba diving allowed!";
+  } else {
+    scubaEl.textContent = "No scuba diving, sorry.";
+    console.log(scubaValue)
+    
+  }
+};
 
   
 //calls the init function on page startup
