@@ -1,8 +1,8 @@
 // const { Comments } = require("../../models");
 // const { beforeFindAfterExpandIncludeAll } = require("../../models/User");
 
-let server = "http://localhost:3001";
-// let server = "https://springhunters1.herokuapp.com";
+// let server = "http://localhost:3001";
+let server = "https://springhunters1.herokuapp.com";
 
 
 let springId = myGlobal.selectedSpringId;

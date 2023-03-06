@@ -1,8 +1,8 @@
 // Global vars
 
-// This server var needs switched before deploying to heroku
-let server = "http://localhost:3001";
-// let server = "https://springhunters1.herokuapp.com";
+// // This server var needs switched before deploying to heroku
+// let server = "http://localhost:3001";
+let server = "https://springhunters1.herokuapp.com";
 
 // ***************************************
 // ********  DOM elements  ***************
