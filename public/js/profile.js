@@ -1,32 +1,32 @@
-document
-  .querySelector('.pw')
-  .addEventListener('submit', resetpw);
+// document
+//   .querySelector('.pw')
+//   .addEventListener('submit', resetpw);
 
 
-const resetpw = async (event) => {
-  event.preventDefault();
+// const resetpw = async (event) => {
+//   event.preventDefault();
 
-  const oldpw = document.querySelector('#oldPassword').value.trim();
+//   const oldpw = document.querySelector('#oldPassword').value.trim();
   
-  const newpw = document.querySelector('#password').value.trim();
+//   const newpw = document.querySelector('#password').value.trim();
 
-  if (oldpw && newpw) {
-    const response = await fetch(`/api/users/:userId/resetPassword`, {
-      method: 'POST',
-      body: JSON.stringify({oldPassword: oldpw, newPassword: newpw }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+//   if (oldpw && newpw) {
+//     const response = await fetch(`/api/users/:userId/resetPassword`, {
+//       method: 'POST',
+//       body: JSON.stringify({oldPassword: oldpw, newPassword: newpw }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
 
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert('Username or password incorrect');
+//     if (response.ok) {
+//       document.location.replace('/profile');
+//     } else {
+//       alert('Username or password incorrect');
 
-    }
-  }
-};
+//     }
+//   }
+// };
 
 // app.get('/userData.Json', async (req, res) => {
 //   const userId = req.user.id; 

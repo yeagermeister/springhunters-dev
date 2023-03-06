@@ -176,7 +176,7 @@ router.get('/login', (req, res) => {
 
 // Route to input a new spring 
 router.get('/newspring', async (req, res) => {
-  const springData = await NewSpring.findAll({});
+  const springData = await NewSpring.findAll();
   const springs = springData.map((spring) => {
     const plainspring = spring.get({ plain: true })
 
