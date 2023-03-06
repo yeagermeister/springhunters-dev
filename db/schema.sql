@@ -51,6 +51,7 @@ CREATE TABLE comments (
   user_id INT,
   spring_id INT,
   comment TEXT,
+  comment_id INT,
   rating_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL

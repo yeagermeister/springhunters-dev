@@ -14,21 +14,21 @@ Ratings.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
+        model: 'user',
         key: 'id'
       }
     },
     spring_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'springs',
+        model: 'spring',
         key: 'id'
       }
     },
     comment_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'comments',
+        model: 'comment',
         key: 'id'
       }
     },

@@ -14,33 +14,33 @@ Comments.init(
     user_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'users',
+        model: 'user',
         key: 'id',
       }
     },
     spring_id: {
       type: DataTypes.INTEGER,
       references:{
-        model: 'springs',
+        model: 'spring',
         key: 'id',
       }
     },
-    rating_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'ratings',
-        key: 'id'
-      }
+    // rating_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'rating',
+    //     key: 'id'
+    //   }
       
-    },
+    // },
     comment: {
       type: DataTypes.STRING,
-      
+      primaryKey: true
 
     },
     comment_id: {
       type: DataTypes.INTEGER,
-      
+      primaryKey: true
 
     }
   },

@@ -67,12 +67,14 @@ router.get('/', async (req, res) => {
    
     });
   } catch (err) {
+    console.log(err.message)
     res.status(500).json(err);
   }
 });
 
 router.get('/springs/:id', async (req, res) => {
   try {
+    console.log('made it here')
     const springData = await Spring.findByPk(req.params.id, {
       include: [
         {
@@ -85,11 +87,11 @@ router.get('/springs/:id', async (req, res) => {
         }
       ]
     });
-
+    
     const springs = springData.get({ plain: true });
     
-  
-    res.render('spring', {springs, comments, })
+  console.log(springs, springData)
+    res.render('spring', {springs })
   } catch (err) {
     res.status(500).json(err);
   }
