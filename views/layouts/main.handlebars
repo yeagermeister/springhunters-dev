@@ -9,6 +9,9 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="shortcut icon" href="#">
+  <script async await
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUPFIpucG-X584hME5DFs-4Yu28ny2vVk&v=weekly&libraries=geometry,places"></script>
+
 </head>
 
 <body class="body-background">
@@ -27,17 +30,26 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
+        {{#unless logged_in}}
         <li class="nav-item">
-
           <a class="nav-link" href="/login">Login or Signup</a>
         </li>
+        {{/unless}}
+           {{#if logged_in}} 
         <li class="nav-item">
-          <a class="nav-link d-none" href="#">Logout</a>
+          <a class="nav-link" href="#">Logout</a>
         </li>
+        {{/if}}
+        {{#if logged_in}} 
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#newSpringModal">Submit a new spring</a>
-
+          <a class="nav-link" href="/admin">Site Administration</a>
         </li>
+        {{/if}}
+        <li class="nav-item">
+          {{!-- data-toggle="modal" data-target="#newSpringModal"> --}}
+          <a class="nav-link" href="/newspring"> Submit a new spring</a>
+        </li>
+        {{!-- {{/if}} --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -112,7 +124,7 @@
 </div>
 
 <!-- New Spring Modal -->
-<div class="modal fade" id="newSpringModal" tabindex="-1" role="dialog" aria-labelledby="newSpringModalCenterTitle"
+{{!-- <div class="modal fade" id="newSpringModal" tabindex="-1" role="dialog" aria-labelledby="newSpringModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -147,7 +159,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -155,8 +167,9 @@
   integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<script async
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUPFIpucG-X584hME5DFs-4Yu28ny2vVk&v=weekly&libraries=geometry,places"></script>
-<script type="module" src="../js/script.js"></script>
+
+<script async await type="module"  src="../../js/mainScript.js"></script>
+
+
 
 </html>
