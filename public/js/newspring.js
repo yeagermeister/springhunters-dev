@@ -19,7 +19,7 @@ const zipcodeM = document.querySelector("#zipcodem")
 
 // listener for the submit button when addin a spring
 newSpring.addEventListener("click", async function(event) {
-  event.preventDefault;
+  // event.preventDefault();
 
   let camping = "";
   let pets = "";
@@ -42,7 +42,7 @@ newSpring.addEventListener("click", async function(event) {
 //     console.log(temp);
 //     window.localStorage.setItem('temp', temp);
 
-
+console.log(name, description, zipcode)
   if (name && description && zipcode) {
     const response = await fetch('/api/newspring/', {
       method: 'POST',
@@ -54,7 +54,6 @@ newSpring.addEventListener("click", async function(event) {
       window.location.replace('/newspring');
     } else {
       alert(response.statusText);
-      console.log(uh-oh)
     }
 }
 });
