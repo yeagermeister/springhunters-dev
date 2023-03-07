@@ -1,12 +1,11 @@
-
 <div class="card border border-rounded shadow spring-card flex-grow-1 p-2 m-1">
-    <h2>User administration</h2>
+	<h2>User administration</h2>
 </div>
-
+{{!-- user page for admin --}}
 {{#each users as |user| }}
 
 <div class="card border border-rounded shadow spring-card flex-grow-1 p-2 m-1">
-	<h3>User Name:  {{user.username}}</h3>
+	<h3>User Name: {{user.username}}</h3>
 	<p id="spring">{{user.username}}</p>
 	<h3>First Name:</h3>
 	<p id="desc">{{user.first_name}}</p>
@@ -18,7 +17,7 @@
 	<p id="zip">{{user.permissions}}</p>
 	<h3>Customer Level:</h3>
 	<p id="statepark">{{user.customer_level}}</p>
-    <h3>Zipcode:</h3>
+	<h3>Zipcode:</h3>
 	<p id="statepark">{{user.zipcode}}</p>
 </div>
 

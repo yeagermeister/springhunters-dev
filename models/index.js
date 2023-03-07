@@ -1,3 +1,4 @@
+//importing the model modules, ratings currently disabled, as are comments
 const User = require('./User');
 const Spring = require('./Spring');
 const Comments = require('./comments');
@@ -13,7 +14,7 @@ const NewSpring = require('./NewSpring');
 //     foreignKey: 'users_id',
 // });
 
-Comments.belongsTo(Spring,{
+Comments.belongsTo(Spring, {
     foreignKey: 'spring_id',
     onDelete: 'CASCADE'
 });
@@ -45,4 +46,4 @@ Comments.belongsTo(Spring,{
 // });
 
 // module.exports = { User, Spring, Comments, Ratings, NewSpring };
-module.exports = { User, Spring, NewSpring};
+module.exports = { User, Spring, NewSpring };

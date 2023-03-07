@@ -1,13 +1,14 @@
+//declares the model utilizing sequelize, imports sequelize and the sequelize connection, as well as bcrypt for password encryption
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-
+//declaring the class extension as well as what to encrypt and check against the encryption
 class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-
+//declares the attributes of the model and the requirements for it, as well as any primary/foreign keys
 User.init(
   {
     id: {
@@ -57,6 +58,7 @@ User.init(
     },
   },
   {
+    //inserts hooks for the password encryption, hashing them
     hooks: {
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
@@ -67,6 +69,7 @@ User.init(
         return updatedUserData;
       },
     },
+    //model settings
     sequelize,
     timestamps: false,
     freezeTableName: false,

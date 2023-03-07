@@ -1,8 +1,9 @@
+//declares the model utilizing sequelize, imports sequelize and the sequelize connection
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-
-class NewSpring extends Model {}
-
+//declaring the class extension
+class NewSpring extends Model { }
+//declares the attributes of the model and the requirements for it, as well as any primary/foreign keys
 NewSpring.init(
   {
     id: {
@@ -36,6 +37,7 @@ NewSpring.init(
     }
   },
   {
+    //model settings
     sequelize,
     timestamps: false,
     underscored: true,

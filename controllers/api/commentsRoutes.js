@@ -1,3 +1,4 @@
+//importing router and the comments model, currently disabled
 const router = require('express').Router();
 const { Comments } = require('../../models');
 
@@ -16,15 +17,15 @@ router.post('/', async (req, res) => {
   }
 });
 
-
+//get all comments
 router.get('/', async (req, res) => {
-  try{
+  try {
     const commentData = await Comments.findAll();
     // const comments = commentData.map((comment)=> {
     //   const plaincomments = comment.get({plain: true})
-      
-   res.status(200).json(commentData);
-}
+
+    res.status(200).json(commentData);
+  }
   catch (err) {
     res.status(500).json(err)
   }
@@ -34,56 +35,57 @@ router.get('/', async (req, res) => {
 router.get('/spring/:id', async (req, res) => {
   try {
     const commentData = await Comments.findAll({
-      where:{ spring_id: req.params.id}
-    }); 
-    const comments = commentData.map((comment)=> {
-      const plaincomment = comment.get({plain: true})
+      where: { spring_id: req.params.id }
+    });
+    const comments = commentData.map((comment) => {
+      const plaincomment = comment.get({ plain: true })
       return plaincomment;
     })
-      if(!commentData){
-        res.status(404).json({ message: 'no comments with this id!'});
-        return;
-      }else{
-        
-      res.status(200).json(comments);}
-    } catch (err) {
-      res.status(500).json(err)
-      console.log(err)
+    if (!commentData) {
+      res.status(404).json({ message: 'no comments with this id!' });
+      return;
+    } else {
+
+      res.status(200).json(comments);
     }
-  });
+  } catch (err) {
+    res.status(500).json(err)
+    console.log(err)
+  }
+});
 
 
 // create a middleware function to check if the user is an admin
 const checkAdmin = (req, res, next) => {
-    if (req.session.logged_in && req.session.user.permissions === 'admin') {
-      // user is an admin, continue with the request
-      next();
-    } else {
-      // user is not an admin, return an error
-      res.status(401).json({ message: 'You are not authorized to perform this action.' });
+  if (req.session.logged_in && req.session.user.permissions === 'admin') {
+    // user is an admin, continue with the request
+    next();
+  } else {
+    // user is not an admin, return an error
+    res.status(401).json({ message: 'You are not authorized to perform this action.' });
+  }
+};
+
+// add the middleware function to the delete route
+router.delete('/:id', checkAdmin, async (req, res) => {
+  try {
+    const commentData = await Comments.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found with this id!' });
+      return;
     }
-  };
-  
-  // add the middleware function to the delete route
-  router.delete('/:id', checkAdmin, async (req, res) => {
-    try {
-      const commentData = await Comments.destroy({
-        where: {
-          id: req.params.id,
-        },
-      });
-  
-      if (!commentData) {
-        res.status(404).json({ message: 'No comment found with this id!' });
-        return;
-      }
-  
-      res.status(200).json(commentData);
-  
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
+
+    res.status(200).json(commentData);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;

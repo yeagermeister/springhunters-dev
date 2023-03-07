@@ -1,8 +1,9 @@
+-- starts the db
 DROP DATABASE IF EXISTS springhunters_db;
 CREATE DATABASE springhunters_db;
 USE springhunters_db;
 
-
+-- creating the tables
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
@@ -14,14 +15,7 @@ CREATE TABLE users (
   zipcode INT(5),
   email VARCHAR(30) NOT NULL UNIQUE
 );
-
-
--- passwords and usernames will get hashed to md5 when we write them to the database
--- EXAMPLES
--- mysql> INSERT INTO UserNameAndPasswordDemo(UserId, UserPassword) VALUES ('John@gg.com', MD5('john123'));
--- Query OK, 1 row affected (0.17 sec)
--- mysql> INSERT INTO UserNameAndPasswordDemo(UserId, UserPassword) VALUES (MD5('Carol@gg.com'), MD5('123Carol'));
--- Query OK, 1 row affected (0.14 sec)
+-- creating the tables
 CREATE TABLE springs (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -36,7 +30,7 @@ CREATE TABLE springs (
   lat DECIMAL (7,4),
   lng DECIMAL (7,4)
 );
-
+-- currently disabled
 -- CREATE TABLE ratings (
 --   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --   user_id INT,
@@ -45,6 +39,7 @@ CREATE TABLE springs (
 --   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
 --   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
 -- );
+-- creating the tables
 CREATE TABLE comments (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
@@ -54,6 +49,7 @@ CREATE TABLE comments (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
   FOREIGN KEY (spring_id) REFERENCES springs(id) ON DELETE SET NULL
 );
+-- creating the tables
 CREATE TABLE new_spring (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
