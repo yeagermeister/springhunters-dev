@@ -1,8 +1,9 @@
+//declares the model utilizing sequelize, imports sequelize and the sequelize connection
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-
-class Ratings extends Model {}
-
+//declaring the class extension, ratings currently are disabled
+class Ratings extends Model { }
+//declares the attributes of the model and the requirements for it, as well as any primary/foreign keys
 Ratings.init(
   {
     id: {
@@ -21,7 +22,7 @@ Ratings.init(
     spring_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'spring',comment
+        model: 'spring', comment
         key: 'id'
       }
     },
@@ -33,17 +34,18 @@ Ratings.init(
     //   }
     // },
     rating: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: false,
     }
   },
   {
+    //model settings
     sequelize,
     timestamps: false,
     freezeTableName: false,
     underscored: true,
     modelName: 'rating',
-    tableName:'ratings'
+    tableName: 'ratings'
   }
 );
 

@@ -1,4 +1,6 @@
-// document
+// currently disabled password reset functionality
+
+//document
 //   .querySelector('.pw')
 //   .addEventListener('submit', resetpw);
 

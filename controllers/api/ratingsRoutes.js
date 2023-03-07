@@ -1,3 +1,4 @@
+//importing the ratings Model and the router. currently disabled
 const router = require('express').Router();
 const { Ratings } = require('../../models');
 
@@ -45,16 +46,16 @@ router.put('/:id', async (req, res) => {
 
 // create a middleware function to check if the user is an admin
 const checkAdmin = (req, res, next) => {
-    if (req.session.logged_in && req.session.user.permissions === 'admin') {
-      // user is an admin, continue with the request
-      next();
-    } else {
-      // user is not an admin, return an error
-      res.status(401).json({ message: 'You are not authorized to perform this action.' });
-    }
-  };
+  if (req.session.logged_in && req.session.user.permissions === 'admin') {
+    // user is an admin, continue with the request
+    next();
+  } else {
+    // user is not an admin, return an error
+    res.status(401).json({ message: 'You are not authorized to perform this action.' });
+  }
+};
 
-  // add the middleware function to the delete route
+// add the middleware function to the delete route
 router.delete('/:id', checkAdmin, async (req, res) => {
   try {
     const deletedRating = await Ratings.destroy({
@@ -67,7 +68,7 @@ router.delete('/:id', checkAdmin, async (req, res) => {
       return;
     }
     res.status(204).end();
-    
+
   } catch (err) {
     res.status(500).json(err);
   }
