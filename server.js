@@ -1,6 +1,6 @@
 //server variables
-// let server = "http://localhost:3001";
-let server = "https://springhunters1.herokuapp.com";
+let server = "http://localhost:3001";
+// let server = "https://springhunters1.herokuapp.com";
 
 
 // declaring our modules
@@ -9,7 +9,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const helpers = require('./utils/helpers');
+// const helpers = require('./utils/helpers');
 // cheeky cors
 const cors = require('cors');
 // setting up sequelize to connect using connection
@@ -20,7 +20,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({});
 // declaring our session attributes/settings
 const sess = {
   secret: 'Super secret secret',
