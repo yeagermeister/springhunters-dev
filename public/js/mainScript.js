@@ -1,5 +1,5 @@
-// let server = "http://localhost:3001";
-let server = "https://springhunters1.herokuapp.com";
+let server = "http://localhost:3001";
+// let server = "https://springhunters1.herokuapp.com";
 //script that is linked on every page to generate the dropdown menu
 function getSprings() {
     //connects to our api to receive all springs,
