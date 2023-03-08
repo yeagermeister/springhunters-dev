@@ -1,6 +1,6 @@
-//server variables
-// let server = "http://localhost:3001";
-let server = "https://springhunters1.herokuapp.com";
+// server variables
+let server = "http://localhost:3001";
+// let server = "https://springhunters1.herokuapp.com";
 
 // importing variables from handlebars by "borrowing" them
 let springId = myGlobal.selectedSpringId;
